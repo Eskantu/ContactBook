@@ -26,7 +26,7 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal # <-- this is the current bottom line
     - name: Publish
-      run: dotnet publish \UI\Web\Examen.Vue\Examen.Vue.csproj -c Release -o website
+      run: dotnet publish \Examen.sln -c Release -o website
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.0.0
       with:
