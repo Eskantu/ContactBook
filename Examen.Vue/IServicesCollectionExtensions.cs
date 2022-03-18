@@ -1,4 +1,5 @@
-﻿using Examen.Core.COMMON.Interfaces;
+﻿using Examen.Core.BIZ;
+using Examen.Core.COMMON.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
