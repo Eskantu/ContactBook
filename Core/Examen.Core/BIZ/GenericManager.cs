@@ -23,9 +23,6 @@ namespace Examen.Core.BIZ
 
         public List<T> ObtenerTodos(SpParametros parametros) => _repository.Read(parametros);
 
-        public virtual List<Y> Query<Y>(SpParametros parametros)
-        {
-            throw new NotImplementedException();
-        }
+        public virtual List<Y> Query<Y>(SpParametros parametros) => _repository.Query<Y>(parametros);
     }
 }

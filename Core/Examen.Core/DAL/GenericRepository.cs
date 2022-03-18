@@ -38,28 +38,7 @@ namespace Examen.Core.DAL
             return result;
         }
 
-        private T CrearEntidad(IDataReader data, Type tipoDato)
-        {
-            T entidad;
-            PropertyInfo[] properties = tipoDato.GetProperties();
-            entidad = (T)Activator.CreateInstance(tipoDato);
-            properties.ToList().ForEach(property =>
-            {
-                property.SetValue(entidad, data[property.Name] == DBNull.Value ? null : data[property.Name]);
-            });
-            return entidad;
-        }
-        private Y CrearModelo<Y>(IDataReader data, Type tipoDato)
-        {
-            Y entidad;
-            PropertyInfo[] properties = tipoDato.GetProperties();
-            entidad = (Y)Activator.CreateInstance(tipoDato);
-            properties.ToList().ForEach(property =>
-            {
-                property.SetValue(entidad, data[property.Name] == DBNull.Value ? null : data[property.Name]);
-            });
-            return entidad;
-        }
+
 
         public bool Delete(SpParametros parametros)
         {
@@ -121,6 +100,29 @@ namespace Examen.Core.DAL
                 reader.Close();
             }
             return data;
+        }
+
+        private T CrearEntidad(IDataReader data, Type tipoDato)
+        {
+            T entidad;
+            PropertyInfo[] properties = tipoDato.GetProperties();
+            entidad = (T)Activator.CreateInstance(tipoDato);
+            properties.ToList().ForEach(property =>
+            {
+                property.SetValue(entidad, data[property.Name] == DBNull.Value ? null : data[property.Name]);
+            });
+            return entidad;
+        }
+        private Y CrearModelo<Y>(IDataReader data, Type tipoDato)
+        {
+            Y entidad;
+            PropertyInfo[] properties = tipoDato.GetProperties();
+            entidad = (Y)Activator.CreateInstance(tipoDato);
+            properties.ToList().ForEach(property =>
+            {
+                property.SetValue(entidad, data[property.Name] == DBNull.Value ? null : data[property.Name]);
+            });
+            return entidad;
         }
 
         ~GenericRepository()

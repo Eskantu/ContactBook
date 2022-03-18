@@ -8,8 +8,8 @@ using Examen.Core.COMMON.Interfaces;
 using Examen.Core.COMMON.Models;
 namespace Examen.Vue.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]

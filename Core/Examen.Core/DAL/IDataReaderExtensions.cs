@@ -9,8 +9,7 @@ namespace Examen.Core.DAL
 {
     public static class IDataReaderExtensions
     {
-        public static IEnumerable<T> Select<T>(this IDataReader reader,
-                       Func<IDataReader, T> projection)
+        public static IEnumerable<T> Select<T>(this IDataReader reader, Func<IDataReader, T> projection)
         {
             while (reader.Read())
             {
