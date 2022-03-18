@@ -34,7 +34,7 @@ namespace Examen.Vue.Controllers
 
         // POST: api/TipoContacto
         [HttpPost]
-        public IActionResult Post(TipoContacto value)
+        public void Post(TipoContacto value)
         {
         }
 
