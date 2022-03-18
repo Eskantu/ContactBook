@@ -26,14 +26,14 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal # <-- this is the current bottom line
     - name: Publish
-      run: dotnet publish Examen\UI\Web\Examen.Vue\Examen.Vue.csproj/Examen.Vue.csproj -c Release -o website
+      run: dotnet publish Examen\UI\Web\Examen.Vue\Examen.Vue.csproj -c Release -o website
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.0.0
       with:
         # Artifact name
         name: website # optional, default is artifact
         # A file, directory or wildcard pattern that describes what to upload
-        path: SimpleFeedReader/website/**
+        path: ContactBook/website/**
         # The desired behavior if no files are found using the provided path.
         #warn: Output a warning but do not fail the action
         #error: Fail the action with an error message
