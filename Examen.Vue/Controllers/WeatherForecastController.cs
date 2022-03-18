@@ -9,7 +9,7 @@ using Examen.Core.COMMON.Models;
 namespace Examen.Vue.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -18,17 +18,14 @@ namespace Examen.Vue.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
-        private readonly IContactoManager _contactoManager;
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, IContactoManager contactoManager)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
             _logger = logger;
-            _contactoManager = contactoManager;
         }
 
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            var contactos = _contactoManager.ObtenerTodos(new SpParametros("SpAgendaWinForm", new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("@Opcion", 1), }));
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
