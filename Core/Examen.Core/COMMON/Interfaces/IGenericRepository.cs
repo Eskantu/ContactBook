@@ -9,7 +9,7 @@ namespace Examen.Core.COMMON.Interfaces
 {
    public interface IGenericRepository<T> where T:class
     {
-        T Create(SpParametros parametros);
+        bool Create(SpParametros parametros);
         List<T> Read(SpParametros parametros);
         bool Update(SpParametros parametros);
         bool Delete(SpParametros parametros);

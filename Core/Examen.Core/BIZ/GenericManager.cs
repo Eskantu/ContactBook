@@ -17,7 +17,7 @@ namespace Examen.Core.BIZ
 
         public bool Actualizar(SpParametros parametros) => _repository.Update(parametros);
 
-        public T Crear(SpParametros parametros) => _repository.Create(parametros);
+        public bool Crear(SpParametros parametros) => _repository.Create(parametros);
 
         public bool Eliminar(SpParametros parametros) => _repository.Delete(parametros);
 

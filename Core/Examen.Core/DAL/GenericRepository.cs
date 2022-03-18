@@ -23,23 +23,19 @@ namespace Examen.Core.DAL
 
         public string Error { get; private set; }
 
-        public T Create(SpParametros parametros)
+        public bool Create(SpParametros parametros)
         {
-            T entidad;
+            bool result;
             try
             {
-                using (IDataReader reader = _connection.ExecuteQuery(CrearComando(parametros)) as IDataReader)
-                {
-                    List<T> result = reader.Select(r => CrearEntidad(r, typeof(T))).ToList();
-                    entidad = result[0];
-                }
+                result= _connection.ExecuteNoQuery(CrearComando(parametros)) > 0;
             }
             catch (Exception ex)
             {
                 Error = ex.Message;
-                entidad = null;
+                result = false;
             }
-            return entidad;
+            return result;
         }
 
         private T CrearEntidad(IDataReader data, Type tipoDato)

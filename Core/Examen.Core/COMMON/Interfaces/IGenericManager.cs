@@ -9,7 +9,7 @@ namespace Examen.Core.COMMON.Interfaces
 {
    public interface IGenericManager<T> where T:class
     {
-        T Crear(SpParametros parametros);
+        bool Crear(SpParametros parametros);
         List<T> ObtenerTodos(SpParametros parametros);
         string Errror { get;  }
         bool Actualizar(SpParametros parametros);
