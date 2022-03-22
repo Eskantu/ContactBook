@@ -33,7 +33,7 @@ namespace Examen.Vue.Controllers
         }
 
         // GET: api/EstadoCivil/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             try

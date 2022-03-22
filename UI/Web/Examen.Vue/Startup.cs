@@ -31,7 +31,7 @@ namespace Examen.Vue
             services.AddControllers();
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ClientApp";
+               configuration.RootPath = "clientapp/dist";
             });
             services.AddManagers(Configuration);
             //    var provider = services.BuildServiceProvider();
@@ -62,9 +62,9 @@ namespace Examen.Vue
             app.UseSpa(spa =>
             {
                 if (env.IsDevelopment())
-                    spa.Options.SourcePath = "ClientApp";
+                    spa.Options.SourcePath = "clientapp";
                 else
-                    spa.Options.SourcePath = "dist";
+                    spa.Options.SourcePath = "clientapp/dist";
 
                 if (env.IsDevelopment())
                 {

@@ -26,7 +26,7 @@ namespace Examen.Vue.Controllers
         }
 
         // GET: api/TipoContacto/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             return Ok(_tipoContactoManager.ObtenerTodos(new Core.COMMON.Models.SpParametros($"select * from TipoContacto where IdTipoContacto = {id}")));
