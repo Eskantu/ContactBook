@@ -50,6 +50,7 @@ namespace Examen.Vue
                 app.UseDeveloperExceptionPage();
             }
 
+
             app.UseRouting();
             app.UseSpaStaticFiles();
             app.UseAuthorization();
