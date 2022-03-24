@@ -4,7 +4,7 @@
       <v-col offset-md="2" md="8" class="text-md-center">
         <v-card>
           <v-card-title class="white--text">
-            <h2>Bienvenido a Contact - Book</h2>
+            <h2>Bienvenidos a mi aplicación  CI/CD</h2>
           </v-card-title>
         </v-card>
       </v-col>
