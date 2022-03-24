@@ -7,8 +7,6 @@ module.exports = {
   // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
   extends: [
     'standard',
-    'plugin:vue/base',
-    'plugin:vuetify/base'
   ],
   // We could also use the https://github.com/vuejs/eslint-plugin-vue
   // required to lint *.vue files

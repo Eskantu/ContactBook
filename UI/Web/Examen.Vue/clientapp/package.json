@@ -10,7 +10,6 @@
   "dependencies": {
     "axios": "^0.26.1",
     "core-js": "^3.4.3",
-    "eslint": "^5.16.0",
     "js-cookie": "^3.0.1",
     "moment": "^2.29.1",
     "vue": "^2.6.10",
@@ -22,11 +21,12 @@
   "devDependencies": {
     "@mdi/font": "^6.6.95",
     "@vue/cli-plugin-babel": "^4.1.0",
-    "@vue/cli-plugin-eslint": "^4.1.0",
+    "@vue/cli-plugin-eslint": "^4.2.0",
     "@vue/cli-plugin-router": "^4.5.16",
     "@vue/cli-plugin-vuex": "^4.5.16",
     "@vue/cli-service": "^4.1.0",
     "babel-eslint": "^10.1.0",
+    "eslint": "^4.19.1",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-html": "^5.0.0",
     "eslint-plugin-import": "^2.9.0",
