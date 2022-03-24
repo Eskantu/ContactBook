@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.26.1",
     "core-js": "^3.4.3",
+    "eslint-config-standard": "^16.0.3",
     "eslint-plugin-html": "^6.2.0",
     "js-cookie": "^3.0.1",
     "moment": "^2.29.1",
