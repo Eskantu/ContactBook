@@ -4,6 +4,14 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 
+import moment from 'moment';
+
+Vue.filter('formatDate', function (value) {
+  if (value) {
+    return moment(String(value)).format('MM-DD-YYYY hh:mm')
+  }
+});
+
 Vue.config.productionTip = false
 
 new Vue({
