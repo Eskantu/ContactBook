@@ -37,7 +37,7 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
-    needs: build
+    needs: test
     steps:
       - name: Publish app 📰
         run: dotnet publish -c Release -o ./out
