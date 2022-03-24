@@ -29,11 +29,11 @@ jobs:
         run: dotnet build -c Release --no-restore
 
   test:
-    #runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
     needs: build
     steps:
       - name: Run automated test 🧪
-        run: dotnet test -c Release --no-build
+        run: dotnet test Test/Examen.Tests -c Release --no-build
 
   publish:
     runs-on: ubuntu-latest
