@@ -2,7 +2,6 @@
   <v-container class="jumbotron-eskantu" fluid fill-height>
     <v-row align="center">
       <v-col offset-md="2" md="8" class="text-md-center">
-        <Search v-on:CloseDialog="Close" :show="show"></Search>
         <v-card>
           <v-card-title class="white--text">
             <h2>Bienvenido a Contact - Book</h2>
@@ -15,7 +14,6 @@
 </template>
 
 <script>
-import Search from "./Search.vue";
 import router from "../router";
 export default {
   name: "Home",
@@ -33,7 +31,7 @@ export default {
     },
   },
 
-  components: { Search }
+  components: { }
 };
 </script>
 
