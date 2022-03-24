@@ -20,8 +20,7 @@ const store = {
     },
     actions: {
         ObtenerUsuarios({ commit }) {
-            console.log('sdaksdjhkasbdkadoñsdfñosdf')
-            axios.get('/user').then(res => commit("setUserList", res.data)).catch(e => console.log(e))
+            axios.get('/user').then(res => commit("setUserList", res.data)).catch(() => { })
         },
         SetSearch({ state }, search) {
             state.search = search
