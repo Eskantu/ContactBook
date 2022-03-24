@@ -29,13 +29,13 @@ jobs:
 
       - name: Build App 🏗️
         run: dotnet build -c Release --no-restore
-
+  test:
       - name: Run automated test 🧪
         run: dotnet test -c Release --no-build
-    
+  publish:
       - name: Publish app 📰
         run: dotnet publish -c Release -o ./out
-
+  deploy:
       - name: Deploy to Azure Web App 🚀
         uses: azure/webapps-deploy@v2
         with: 
