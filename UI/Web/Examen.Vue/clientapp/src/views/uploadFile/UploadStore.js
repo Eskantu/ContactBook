@@ -18,6 +18,7 @@ const store = {
     UpdateFileList(state, payload) {
       state.fileNotUploaded = [];
       state.filesUploaded.push(payload);
+      console.log(state.filesUploaded);
     },
     setIsUploading(state, value) {
       state.isUploading = value;
@@ -34,11 +35,13 @@ const store = {
       // state.fileNotUploaded[0].append('file', payload);
       // console.log(state.fileNotUploaded[0]);
       // console.log(state.fileNotUploaded[0].getAll('file'));
+      console.log(state.fileNotUploaded);
 
     }
   },
   actions: {
     handleFileUpload({ commit }, event) {
+      console.log(event, 'event');
       commit('setFile', event);
     },
     upload({ commit }, data) {
@@ -47,13 +50,16 @@ const store = {
       data.forEach(element => {
         file.append('file', element.file);
       });
+      console.log(file, 'file');
       return API.uploadFile(file)
         .then(response => {
+          console.log("UpdateFileList", response);
           commit('setIsUploading', false);
           commit('UpdateFileList', response.data.data)
         })
-        .catch(() => {
+        .catch(error => {
           commit('setIsUploading', false);
+          console.log(error);
         });
     }
   },
