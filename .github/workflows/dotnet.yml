@@ -29,7 +29,7 @@ jobs:
         run: dotnet build -c Release --no-restore
       
       - name: list directories
-        run: ls "$GITHUB_WORKSPACE/Test/Examen.Tests"
+        run: dotnet test "$GITHUB_WORKSPACE/Test/Examen.Tests"
 
   # test:
   #   runs-on: ubuntu-latest
