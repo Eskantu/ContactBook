@@ -28,27 +28,28 @@ jobs:
       - name: Build App 🏗️
         run: dotnet build -c Release --no-restore
 
-  # test:
-  #   runs-on: ubuntu-latest
-  #   needs: build
-  #   steps:
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
       - name: Run automated test 🧪
+        run: cd ${ github.GITHUB_WORKSPACE }\Test\Examen.Tests
         run: dotnet test -c Release --no-build
 
   # publish:
   #   runs-on: ubuntu-latest
   #   needs: test
   #   steps:
-      - name: Publish app 📰
-        run: dotnet publish -c Release -o ./out
+  #     - name: Publish app 📰
+  #       run: dotnet publish -c Release -o ./out
 
-  # deploy:
-  #   runs-on: ubuntu-latest
-  #   needs: publish
-  #   steps:
-      - name: Deploy to Azure Web App 🚀
-        uses: azure/webapps-deploy@v2
-        with: 
-          app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_SECRET }}
-          package: ./out
+  # # deploy:
+  # #   runs-on: ubuntu-latest
+  # #   needs: publish
+  # #   steps:
+  #     - name: Deploy to Azure Web App 🚀
+  #       uses: azure/webapps-deploy@v2
+  #       with: 
+  #         app-name: ${{ env.AZURE_WEBAPP_NAME }}
+  #         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_SECRET }}
+  #         package: ./out
