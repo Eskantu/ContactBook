@@ -1,13 +1,13 @@
 <template>
   <v-app>
     <Snackbar></Snackbar>
-    <NavigationBar v-if="user"></NavigationBar>
+    <NavigationBar :show="shownavigationbar" v-if="user"></NavigationBar>
     <v-main>
       <router-view />
     </v-main>
     <v-footer dark padless>
       <v-col class="text-center" cols="12">
-        {{ new Date().getFullYear() }} — <strong>PIoT</strong>
+        {{ new Date().getFullYear() }} — <strong>ContactBook</strong>
       </v-col>
     </v-footer>
   </v-app>
@@ -21,7 +21,9 @@ export default {
   name: "App",
   components: { Snackbar, NavigationBar },
   data() {
-    return {};
+    return {
+      shownavigationbar:true
+    };
   },
   computed: {
     user: function () {

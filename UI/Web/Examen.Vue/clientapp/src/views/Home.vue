@@ -1,13 +1,28 @@
 <template>
   <v-container class="jumbotron-eskantu" fluid fill-height>
+    <v-app-bar app dark clipped-left clipped-right>
+      <v-toolbar>
+        <v-btn @click="showNavigation" dark icon>
+          <v-icon>menu</v-icon>
+        </v-btn>
+      </v-toolbar>
+    </v-app-bar>
     <v-row align="center">
       <v-col offset-md="2" md="8" class="text-md-center">
+      <!--  <Search v-on:CloseDialog="Close" :show="show"></Search>-->
         <v-card>
           <v-card-title class="white--text">
-            <h2>Bienvenido a Contact - Book</h2>
-
+            <h2>Bienvenido a ContactBook</h2>
           </v-card-title>
         </v-card>
+        <v-btn :to="{ name: 'New' }" dark color="transparent" class="mt-10">
+          <v-icon color="green">add_circle</v-icon>
+          New project
+        </v-btn>
+        <v-btn @click="show = true" dark color="transparent" class="mt-10 ml-5">
+          Search project
+          <v-icon color="green">search</v-icon>
+        </v-btn>
       </v-col>
     </v-row>
   </v-container>
@@ -15,6 +30,7 @@
 
 <script>
 import router from "../router";
+import { mapMutations } from 'vuex';
 export default {
   name: "Home",
   data() {
@@ -29,9 +45,12 @@ export default {
         router.push({ name: "Projects" });
       }
     },
+     ...mapMutations('SlideBarStore',{
+                showNavigation: 'SetShowMutation'
+            }),
   },
 
-  components: { }
+  components: {},
 };
 </script>
 

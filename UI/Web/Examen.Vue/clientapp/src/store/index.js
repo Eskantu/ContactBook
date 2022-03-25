@@ -6,6 +6,7 @@ import SnackStore from '../components/Snackbar/SnackStore'
 import NewStore from '../views/New/viewStore'
 import UserStore from '../views/users/UserStore'
 import UploadStore from '../views/uploadFile/UploadStore'
+import SlideBarStore from '../components/sliderBar/slidebarStore'
 // import auth from '../auth/auth'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
@@ -24,5 +25,5 @@ export default new Vuex.Store({
   },
   actions: {
   },
-  modules: { RegistroStore, SnackStore, LoginStore, NewStore, UserStore, UploadStore },
+  modules: { RegistroStore, SnackStore, LoginStore, NewStore, UserStore, UploadStore, SlideBarStore },
 });
