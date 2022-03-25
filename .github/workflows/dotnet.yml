@@ -34,7 +34,7 @@ jobs:
     steps:
       - name: Run automated test 🧪
         #run: dotnet test $GITHUB_WORKSPACE/Test/Examen.Tests -c Release
-        run: ls /home/runner/work/ContactBook/ContactBook
+        run: ls $GITHUB_WORKSPACE
 
   # publish:
   #   runs-on: ubuntu-latest
