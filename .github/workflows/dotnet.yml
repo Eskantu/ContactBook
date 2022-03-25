@@ -33,8 +33,7 @@ jobs:
     needs: build
     steps:
       - name: Run automated test 🧪
-        # run: dotnet test $GITHUB_WORKSPACE\Test\Examen.Tests -c Release
-        run: echo "{$GITHUB_WORKSPACE}\Test\Examen.Tests -c Release"
+         run: dotnet test $GITHUB_WORKSPACE/Test/Examen.Tests -c Release
 
   # publish:
   #   runs-on: ubuntu-latest
