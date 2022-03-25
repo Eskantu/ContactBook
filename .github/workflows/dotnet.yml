@@ -34,7 +34,7 @@ jobs:
     steps:
       - name: Run automated test 🧪
       #  run: dotnet test ${ github.GITHUB_WORKSPACE }\Test\Examen.Tests -c Release
-        run: echo ${ github.GITHUB_WORKSPACE }
+        run: echo ${ GITHUB_WORKSPACE }
 
   # publish:
   #   runs-on: ubuntu-latest
