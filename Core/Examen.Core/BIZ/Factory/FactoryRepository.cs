@@ -12,12 +12,18 @@ namespace Examen.Core.BIZ.Factory
     {
         private static IGenericRepository<T> _repository;
 
-        public static IGenericRepository<T> GetRepository(string connectionString) {
+        public static IGenericRepository<T> GetRepository(IConnection connection) {
             if (_repository is null)
-                _repository = new GenericRepository<T>(GetConnection(connectionString));
+                _repository = new GenericRepository<T>(connection);
             return _repository;
         }
 
-        private static IConnection GetConnection(string connectionString) => new Connection(connectionString);
+    }
+
+   public class ConnectionBuild
+    {
+        private IConnection _connection;
+        public IConnection GetConnection(string connectionString) => _connection ??= new Connection(connectionString);
+
     }
 }

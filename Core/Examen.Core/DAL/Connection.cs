@@ -15,6 +15,8 @@ namespace Examen.Core.DAL
         public Connection(string connectionString)
         {
             sqlConnection = new SqlConnection(connectionString);
+            if (Connect() == false)
+                throw new Exception("Error al conectar con servidor");
         }
         public bool Connect()
         {

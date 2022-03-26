@@ -17,8 +17,7 @@ namespace Examen.Core.DAL
         public GenericRepository(IConnection connection)
         {
             _connection = connection;
-            if (_connection.Connect() == false)
-                throw new Exception("Error al conectar con servidor");
+           
         }
 
         public string Error { get; private set; }
