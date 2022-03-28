@@ -1,4 +1,5 @@
 ﻿using Examen.Core.BIZ;
+using Examen.Core.BIZ.Factory;
 using Examen.Core.COMMON.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,9 +15,11 @@ namespace Examen.Vue
         public static void AddManagers(this IServiceCollection services, IConfiguration configuration)
         {
             string connectionString = configuration.GetConnectionString("MSSQLServerSomee");
-            services.AddSingleton<IContactoManager>(x => Core.BIZ.Factory.FactoryManager.GetContactoManager(connectionString));
-            services.AddSingleton<ITipoContactoManager>(x => Core.BIZ.Factory.FactoryManager.GetTipoContactoManager(connectionString));
-            services.AddSingleton<IEstadoCivilManager>(x => Core.BIZ.Factory.FactoryManager.GetEstadoCivilManager(connectionString));
+
+            FactoryManager factoryManager = new FactoryManager(connectionString);
+            services.AddSingleton<IContactoManager>(x => factoryManager.GetContactoManager());
+            services.AddSingleton<ITipoContactoManager>(x => factoryManager.GetTipoContactoManager());
+            services.AddSingleton<IEstadoCivilManager>(x => factoryManager.GetEstadoCivilManager());
         }
     }
 }

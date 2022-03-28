@@ -22,6 +22,7 @@ namespace Examen.Core.BIZ.Factory
 
    public class ConnectionBuild
     {
+
         private IConnection _connection;
         public IConnection GetConnection(string connectionString) => _connection ??= new Connection(connectionString);
 

@@ -8,14 +8,17 @@ using System.Threading.Tasks;
 
 namespace Examen.Core.BIZ.Factory
 {
-    public static class FactoryManager
+    public  class FactoryManager
     {
-        public static IContactoManager GetContactoManager() => new ContactoManager(FactoryRepository<Contacto>.GetRepository(connectionString));
-        public static ITipoContactoManager GetTipoContactoManager() => new TipoContactoManager(FactoryRepository<TipoContacto>.GetRepository(connectionString));
-        public static IEstadoCivilManager GetEstadoCivilManager() => new EstadoCivilManager(FactoryRepository<EstadoCivil>.GetRepository(connectionString));
-
         private readonly IConnection connection;
+        public FactoryManager(string connectionString)
+        {
+            connection ??= new ConnectionBuild().GetConnection(connectionString);
+        }
+      
+        public  IContactoManager GetContactoManager() => new ContactoManager(FactoryRepository<Contacto>.GetRepository(connection));
+        public  ITipoContactoManager GetTipoContactoManager() => new TipoContactoManager(FactoryRepository<TipoContacto>.GetRepository(connection));
+        public  IEstadoCivilManager GetEstadoCivilManager() => new EstadoCivilManager(FactoryRepository<EstadoCivil>.GetRepository(connection));
 
-        public static void BuildConnection(string connectionSting) =new ConnectionBuild()
     }
 }
