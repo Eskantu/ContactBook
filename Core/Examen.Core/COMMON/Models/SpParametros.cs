@@ -15,11 +15,11 @@ namespace Examen.Core.COMMON.Models
             Parametros = parametros is null ? new List<KeyValuePair<string, object>>() : parametros;
         }
         /// <summary>
-        /// Nombre del SP a ejecutar
+        /// Nombre del SP o Query a ejecutar
         /// </summary>
         public string Nombre { get; set; }
         /// <summary>
-        /// Parametros que requiere el SP para poder ser ejecutado
+        /// Parametros que requiere el SP o Query para poder ser ejecutado
         /// </summary>
         public List<KeyValuePair<string, object>> Parametros { get; set; }
 
