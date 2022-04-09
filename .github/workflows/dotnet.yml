@@ -14,6 +14,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Check out code ✔
+        uses: actions/checkout@v2
+    
+      - name: Setup .NET Core 3.1.x 🛠️
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Restore dependencies 📦
+        run: dotnet restore
+
+      - name: Build App 🏗️
+        run: dotnet build -c Release --no-restore
+
+  # test:
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   steps:
   #     - name: Check out code ✔
   #       uses: actions/checkout@v2
     
@@ -21,34 +39,16 @@ jobs:
   #       uses: actions/setup-dotnet@v1
   #       with:
   #         dotnet-version: ${{ env.DOTNET_VERSION }}
-
-  #     - name: Restore dependencies 📦
-  #       run: dotnet restore
-
-  #     - name: Build App 🏗️
-  #       run: dotnet build -c Release --no-restore
-
-  # # test:
-  # #   runs-on: ubuntu-latest
-  # #   needs: build
-  # #   steps:
-  # #     - name: Check out code ✔
-  # #       uses: actions/checkout@v2
-    
-  # #     - name: Setup .NET Core 3.1.x 🛠️
-  # #       uses: actions/setup-dotnet@v1
-  # #       with:
-  # #         dotnet-version: ${{ env.DOTNET_VERSION }}
         
-  #     - name: Run automated test 🧪
-  #       run: dotnet test "$GITHUB_WORKSPACE/Test/Examen.Tests" -c Release
+      - name: Run automated test 🧪
+        run: dotnet test "$GITHUB_WORKSPACE/Test/Examen.Tests" -c Release
 
-  # # publish:
-  # #   runs-on: ubuntu-latest
-  # #   needs: test
-  # #   steps:
-  #     - name: Publish app 📰
-  #       run: dotnet publish -c Release -o ./out
+  # publish:
+  #   runs-on: ubuntu-latest
+  #   needs: test
+  #   steps:
+      - name: Publish app 📰
+        run: dotnet publish -c Release -o ./out
 
   # # deploy:
   # #   runs-on: ubuntu-latest
