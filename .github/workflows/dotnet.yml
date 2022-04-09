@@ -54,9 +54,18 @@ jobs:
   # #   runs-on: ubuntu-latest
   # #   needs: publish
   # #   steps:
-      - name: Deploy to Azure Web App 🚀
-        uses: azure/webapps-deploy@v2
-        with: 
-          app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_SECRET }}
-          package: ./out
+      # - name: Deploy to Azure Web App 🚀
+      #   uses: azure/webapps-deploy@v2
+      #   with: 
+      #     app-name: ${{ env.AZURE_WEBAPP_NAME }}
+      #     publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_SECRET }}
+      #     package: ./out
+      
+      - name: Deploy to somee Web App 🚀
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: ftp://bookVue.somee.com/www.bookVue.somee.com
+          username: eskantu
+          password: Mayito.com.98
+          local-dir: ./out
+          server-dir: /
