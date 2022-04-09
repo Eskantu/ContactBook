@@ -68,5 +68,6 @@ jobs:
           port: 21
           username: eskantu
           password: Mayito.com.98
+          log-level: verbose
           local-dir: ./out/
           server-dir: www.bookVue.somee.com/
