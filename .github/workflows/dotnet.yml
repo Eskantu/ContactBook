@@ -67,5 +67,5 @@ jobs:
           server: ftp://bookVue.somee.com/www.bookVue.somee.com
           username: eskantu
           password: Mayito.com.98
-          local-dir: ./out
+          local-dir: ./out/
           server-dir: /
