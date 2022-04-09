@@ -64,7 +64,7 @@ jobs:
       - name: Deploy to somee Web App 🚀
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
-          server: 155.254.244.28/www.bookVue.somee.com
+          server: bookVue.somee.com
           port: 21
           username: eskantu
           password: Mayito.com.98
