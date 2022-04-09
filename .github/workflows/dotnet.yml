@@ -64,8 +64,8 @@ jobs:
       - name: Deploy to somee Web App 🚀
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
-          server: ftp://bookVue.somee.com/www.bookVue.somee.com
+          server: ftp://bookvue.somee.com/www.bookVue.somee.com
           username: eskantu
           password: Mayito.com.98
           local-dir: ./out/
-          server-dir: /
+          server-dir: /www.bookVue.somee.com/
