@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Examen.Core.BIZ;
 using Examen.Core.COMMON.Interfaces;
 using Examen.Core.COMMON.Models;
+using Examen.Vue.Modelos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using VueCliMiddleware;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Examen.Vue.Interfaces;
 
 namespace Examen.Vue
 {
@@ -29,6 +33,10 @@ namespace Examen.Vue
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.Configure<TokenManagement>(Configuration.GetSection("tokenManagement"));
+            var token= Configuration.GetSection("tokenManagement").Get<TokenManagement>();
+            services.AddScoped<IAuthenticateService, TokenAuthenticationService>();
+            services.AddScoped<IUserService, UserService>();
             services.AddSpaStaticFiles(configuration =>
             {
                configuration.RootPath = "clientapp/dist";
@@ -40,6 +48,23 @@ namespace Examen.Vue
             //    {
             //        Console.WriteLine($"{item.IdContacto}----->{item.Nombre} {item.ApellidoPaterno} {item.ApellidoMaterno}");
             //    });
+            services.AddAuthentication(x=>{
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(x=>{
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.Zero,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.ASCII.GetBytes(token.Secret)),
+                    ValidateIssuer = true,
+                    ValidateAudience = true
+                };
+            });
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,8 +78,8 @@ namespace Examen.Vue
 
             app.UseRouting();
             app.UseSpaStaticFiles();
+            app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

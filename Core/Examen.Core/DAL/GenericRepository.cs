@@ -76,7 +76,7 @@ namespace Examen.Core.DAL
             {
                 comando += $"{item.Key}={item.Value},";
             });
-            return comando.Substring(0, comando.Length - 1);
+            return comando[0..^1];
         }
 
         public List<T> Read(SpParametros parametros)

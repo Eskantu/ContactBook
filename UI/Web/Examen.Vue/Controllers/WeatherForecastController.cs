@@ -6,10 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Examen.Core.COMMON.Interfaces;
 using Examen.Core.COMMON.Models;
+using Microsoft.AspNetCore.Authorization;
+
 namespace Examen.Vue.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
