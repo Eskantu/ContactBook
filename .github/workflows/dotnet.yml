@@ -49,7 +49,9 @@ jobs:
   #       with:
   #         dotnet-version: ${{ env.DOTNET_VERSION }}
       - name: check SQL Server status
-        run: docker ps -a
+        run: |
+          docker ps -a
+          docker logs
       - name: Run automated test 🧪
         env:
           ConnectionStrings__DefaultConnection: server=localhost;Database=AppDataBase_Test;User=sa;Password=qwerty123
