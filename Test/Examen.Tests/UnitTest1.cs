@@ -36,7 +36,7 @@ namespace Examen.Tests
             }
             catch (Exception ex)
             {
-                Console.WriteLine( $"Eskantu:-> {ex.Message}");
+                Console.WriteLine( $"Eskantu:-> {ex.Message};stacktrace ->{ex.StackTrace}; inner exception -> {ex.InnerException}");
             }
             // Create controller
             // var controller = new UsuarioController();
