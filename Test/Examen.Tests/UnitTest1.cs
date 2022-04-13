@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
@@ -34,9 +35,9 @@ namespace Examen.Tests
                 await context.Database.EnsureCreatedAsync();
                 Assert.Equal(1, 1);
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                Console.WriteLine( $"Eskantu:-> {ex.Message};stacktrace ->{ex.StackTrace}; inner exception -> {ex.InnerException}");
+                Console.WriteLine( $"Eskantu:-> {ex.Message};stacktrace ->{ex.Errors}; Number error -> {ex.Number}; Server -> {ex.Server}; Procedure -> {ex.Procedure}" );
             }
             // Create controller
             // var controller = new UsuarioController();
