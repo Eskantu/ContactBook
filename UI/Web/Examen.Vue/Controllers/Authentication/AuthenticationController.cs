@@ -30,8 +30,7 @@ namespace Examen.Vue.Controllers
       {
         return BadRequest("Invalid Model");
       }
-      string token;
-      if (_authService.IsAuthenticated(request, out token))
+      if (_authService.IsAuthenticated(request, out AuthenticationModel token))
       {
         return Ok(token);
       }
