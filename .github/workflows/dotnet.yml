@@ -24,12 +24,12 @@ jobs:
 
       - name: Start SQL Server
         run: |
-          docker run -d -e "ACCEPT_EULA=Y" -e "qwerty123" -e "MSSQL_PID=Express" -p 1433:1433 -d mcr.microsoft.com/mssql/server:latest 
+          docker run -d --name SQLServer -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Mayito.com.98" -e "MSSQL_PID=Express" -p 1433:1433 -d mcr.microsoft.com/mssql/server:latest 
 
-      - name: Sleep for 10 seconds
+      - name: Sleep for 5 seconds
         uses: jakejarvis/wait-action@master
         with:
-          time: '10s'
+          time: '5s'
 
       - name: Restore dependencies 📦
         run: dotnet restore
@@ -48,10 +48,14 @@ jobs:
   #       uses: actions/setup-dotnet@v1
   #       with:
   #         dotnet-version: ${{ env.DOTNET_VERSION }}
-        
+      # - name: check SQL Server status
+      #   run: |
+      #     docker ps -a
+      #     docker logs SQLServer
       - name: Run automated test 🧪
         env:
-          ConnectionStrings__DefaultConnection: Server=localhost;Database=AppDataBase_Test;User=sa;Password=qwerty123
+          ConnectionStrings__DefaultConnection: server=localhost;Database=AppDataBase_Test;User=sa;Password=Mayito.com.98
+          #ConnectionStrings__DefaultConnection: Server=localhost;Database=AppDataBase_Test;User Id=sa;Password=qwerty123
         run: dotnet test "$GITHUB_WORKSPACE/Test/Examen.Tests" -c Release --no-build
         #run: dotnet test -c Release --verbosity diag --no-build
 
