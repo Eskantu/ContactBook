@@ -22,14 +22,14 @@ namespace Examen.Vue.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_tipoContactoManager.ObtenerTodos(new Core.COMMON.Models.SpParametros("select * from TipoContacto")));
+            return Ok(_tipoContactoManager.ObtenerTodos(new SpParametros("select * from TipoContacto")));
         }
 
         // GET: api/TipoContacto/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            return Ok(_tipoContactoManager.ObtenerTodos(new Core.COMMON.Models.SpParametros($"select * from TipoContacto where IdTipoContacto = {id}")));
+            return Ok(_tipoContactoManager.ObtenerTodos(new SpParametros($"select * from TipoContacto where IdTipoContacto = {id}")));
         }
 
         // POST: api/TipoContacto
