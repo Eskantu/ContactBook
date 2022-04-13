@@ -20,26 +20,26 @@ namespace Examen.Tests
             Assert.True(1 == 1);
         }
 
-        [Fact]
-        public async Task UsuarioControllerTest()
-        {
-            // Create a DB context
-                var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").AddEnvironmentVariables().Build();
-                var optionsBuilder = new DbContextOptionsBuilder<DbContextEFCore>();
-                optionsBuilder.UseSqlServer(configuration["ConnectionStrings:DefaultConnection"]);
-                var context = new DbContextEFCore(optionsBuilder.Options);
+        //[Fact]
+        //public async Task UsuarioControllerTest()
+        //{
+        //    // Create a DB context
+        //        var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").AddEnvironmentVariables().Build();
+        //        var optionsBuilder = new DbContextOptionsBuilder<DbContextEFCore>();
+        //        optionsBuilder.UseSqlServer(configuration["ConnectionStrings:DefaultConnection"]);
+        //        var context = new DbContextEFCore(optionsBuilder.Options);
                 
-                //Detel a DB
-                await context.Database.EnsureDeletedAsync();
-            //await context.Database.EnsureCreatedAsync();
-            await context.Database.MigrateAsync();
-                Assert.Equal(1, 1);
+        //        //Detel a DB
+        //        await context.Database.EnsureDeletedAsync();
+        //    //await context.Database.EnsureCreatedAsync();
+        //    await context.Database.MigrateAsync();
+        //        Assert.Equal(1, 1);
 
-            // Create controller
-            // var controller = new UsuarioController();
-            // Add user
-            // porbar los metodos del controller
-            // Check: does get all return added users
-        }
+        //    // Create controller
+        //    // var controller = new UsuarioController();
+        //    // Add user
+        //    // porbar los metodos del controller
+        //    // Check: does get all return added users
+        //}
     }
 }
