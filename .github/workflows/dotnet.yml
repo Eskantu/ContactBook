@@ -27,9 +27,9 @@ jobs:
           docker run -d -e "ACCEPT_EULA=Y" -e "qwerty123" -e "MSSQL_PID=Express" -p 1433:1433 -d mcr.microsoft.com/mssql/server:latest 
 
       - name: Sleep for 5 seconds
-      uses: jakejarvis/wait-action@master
-      with:
-        time: '5s'
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '5s'
 
       - name: Restore dependencies 📦
         run: dotnet restore
