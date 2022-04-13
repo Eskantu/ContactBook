@@ -51,7 +51,7 @@ jobs:
         
       - name: Run automated test 🧪
         env:
-          ConnectionStrings__DefaultConnection: Server=localhost;Database=AppDataBase;User=sa;Password=qwerty123
+          ConnectionStrings__DefaultConnection: Server=localhost;Database=AppDataBase_Test;User=sa;Password=qwerty123
         run: dotnet test "$GITHUB_WORKSPACE/Test/Examen.Tests" -c Release --no-build
 
   # publish:
