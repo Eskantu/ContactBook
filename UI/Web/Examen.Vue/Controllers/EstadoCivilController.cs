@@ -88,7 +88,7 @@ namespace Examen.Vue.Controllers
                 {
                     idsToDelete += $"{item},";
                 });
-                return Ok(_estadoCivilManager.Actualizar(new SpParametros($"delete from EstadoCivil where IdEstadoCivil IN ({idsToDelete.Substring(0,idsToDelete.Length-1)})")));
+                return Ok(_estadoCivilManager.Actualizar(new SpParametros($"delete from EstadoCivil where IdEstadoCivil IN ({idsToDelete[0..^1]})")));
             }
             catch (Exception ex)
             {
