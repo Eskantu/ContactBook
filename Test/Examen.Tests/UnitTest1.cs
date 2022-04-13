@@ -24,21 +24,17 @@ namespace Examen.Tests
         public async Task UsuarioControllerTest()
         {
             // Create a DB context
-            try
-            {
                 var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").AddEnvironmentVariables().Build();
                 var optionsBuilder = new DbContextOptionsBuilder<DbContextEFCore>();
                 optionsBuilder.UseSqlServer(configuration["ConnectionStrings:DefaultConnection"]);
                 var context = new DbContextEFCore(optionsBuilder.Options);
-
+                
+                //Detel a DB
                 await context.Database.EnsureDeletedAsync();
-                await context.Database.EnsureCreatedAsync();
+            //await context.Database.EnsureCreatedAsync();
+            await context.Database.MigrateAsync();
                 Assert.Equal(1, 1);
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine( $"Eskantu:-> {ex.Message};stacktrace ->{ex.Errors}; Number error -> {ex.Number}; Server -> {ex.Server}; Procedure -> {ex.Procedure}" );
-            }
+
             // Create controller
             // var controller = new UsuarioController();
             // Add user

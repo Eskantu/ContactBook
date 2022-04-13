@@ -28,6 +28,8 @@ namespace Examen.Vue.Migrations
                 {
                     table.PrimaryKey("PK_Usuario", x => x.IdUsuario);
                 });
+
+          
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
