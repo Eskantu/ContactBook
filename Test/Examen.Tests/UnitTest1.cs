@@ -23,14 +23,21 @@ namespace Examen.Tests
         public async Task UsuarioControllerTest()
         {
             // Create a DB context
-            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").AddEnvironmentVariables().Build();
-            var optionsBuilder = new DbContextOptionsBuilder<DbContextEFCore>();
-            optionsBuilder.UseSqlServer(configuration["ConnectionStrings:DefaultConnection"]);
-            var context = new DbContextEFCore(optionsBuilder.Options);
+            try
+            {
+                var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").AddEnvironmentVariables().Build();
+                var optionsBuilder = new DbContextOptionsBuilder<DbContextEFCore>();
+                optionsBuilder.UseSqlServer(configuration["ConnectionStrings:DefaultConnection"]);
+                var context = new DbContextEFCore(optionsBuilder.Options);
 
-            await context.Database.EnsureDeletedAsync();
-            await context.Database.EnsureCreatedAsync();
-            Assert.Equal(1, 1);
+                await context.Database.EnsureDeletedAsync();
+                await context.Database.EnsureCreatedAsync();
+                Assert.Equal(1, 1);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine( $"Eskantu:-> {ex.Message}");
+            }
             // Create controller
             // var controller = new UsuarioController();
             // Add user
