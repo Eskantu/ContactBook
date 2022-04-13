@@ -22,6 +22,15 @@ jobs:
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
+      - name: Start SQL Server
+        run: |
+          docker run -d -e "ACCEPT_EULA=Y" -e "qwerty123" -e "MSSQL_PID=Express" -p 1433:1433 -d mcr.microsoft.com/mssql/server:latest 
+
+      - name: Sleep for 5 seconds
+      uses: jakejarvis/wait-action@master
+      with:
+        time: '5s'
+
       - name: Restore dependencies 📦
         run: dotnet restore
 
@@ -41,6 +50,8 @@ jobs:
   #         dotnet-version: ${{ env.DOTNET_VERSION }}
         
       - name: Run automated test 🧪
+        env:
+          ConnectionStrings__DefaultConnection: Server=localhost;Database=AppDataBase;User=sa;Password=qwerty123
         run: dotnet test "$GITHUB_WORKSPACE/Test/Examen.Tests" -c Release
 
   # publish:

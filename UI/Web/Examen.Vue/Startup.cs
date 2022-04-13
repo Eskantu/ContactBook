@@ -17,6 +17,7 @@ using VueCliMiddleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Examen.Vue.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Examen.Vue
 {
@@ -64,6 +65,7 @@ namespace Examen.Vue
                     ValidateAudience = true
                 };
             });
+            services.AddDbContext<DbContextEFCore>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             
         }
 
