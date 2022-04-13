@@ -51,7 +51,8 @@ jobs:
         
       - name: Run automated test 🧪
         env:
-          ConnectionStrings__DefaultConnection: Server=localhost;Database=AppDataBase_Test;User Id=sa;Password=qwerty123
+          ConnectionStrings__DefaultConnection: Server=localhost,1433; Database=AppDataBase_Test;User=SA;Password=qwerty123;Trusted_Connection=True
+          #ConnectionStrings__DefaultConnection: Server=localhost;Database=AppDataBase_Test;User Id=sa;Password=qwerty123
         run: dotnet test "$GITHUB_WORKSPACE/Test/Examen.Tests" -c Release --no-build
         #run: dotnet test -c Release --verbosity diag --no-build
 
