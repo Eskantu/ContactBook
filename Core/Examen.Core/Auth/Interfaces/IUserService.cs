@@ -1,6 +1,7 @@
-using Examen.Vue.Modelos;
 
-namespace Examen.Vue.Interfaces
+using Examen.Core.Auth.Modelos;
+
+namespace Examen.Core.Auth.Interfaces
 {
   public interface IUserService
     {

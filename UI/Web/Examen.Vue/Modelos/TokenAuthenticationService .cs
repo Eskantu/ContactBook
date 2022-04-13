@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using Examen.Vue.Interfaces;
+using Examen.Core.Auth.Interfaces;
+using Examen.Core.Auth.Modelos;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 

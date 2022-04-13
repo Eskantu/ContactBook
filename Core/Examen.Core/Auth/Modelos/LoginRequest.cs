@@ -1,7 +1,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace Examen.Vue.Modelos
+namespace Examen.Core.Auth.Modelos
 {
  public class LoginRequest
   {

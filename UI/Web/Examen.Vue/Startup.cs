@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Examen.Core.BIZ;
-using Examen.Core.COMMON.Interfaces;
-using Examen.Core.COMMON.Models;
-using Examen.Vue.Modelos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -16,8 +13,11 @@ using Microsoft.Extensions.Logging;
 using VueCliMiddleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using Examen.Vue.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Examen.Core.COMMON.Interfaces;
+using Examen.Core.COMMON.Models;
+using Examen.Core.Auth.Modelos;
+using Examen.Core.Auth.Interfaces;
 
 namespace Examen.Vue
 {
@@ -36,7 +36,7 @@ namespace Examen.Vue
             services.AddControllers();
             services.Configure<TokenManagement>(Configuration.GetSection("tokenManagement"));
             var token= Configuration.GetSection("tokenManagement").Get<TokenManagement>();
-            services.AddScoped<IAuthenticateService, TokenAuthenticationService>();
+            services.AddScoped<IAuthenticateService, Modelos.TokenAuthenticationService>();
             services.AddScoped<IUserService, UserService>();
             services.AddSpaStaticFiles(configuration =>
             {

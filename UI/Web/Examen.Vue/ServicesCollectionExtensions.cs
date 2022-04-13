@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Examen.Vue
 {
-    public static class IServicesCollectionExtensions
+    public static class ServicesCollectionExtensions
     {
         public static void AddManagers(this IServiceCollection services, IConfiguration configuration)
         {

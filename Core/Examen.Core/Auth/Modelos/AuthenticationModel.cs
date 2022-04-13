@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Examen.Vue.Modelos
+namespace Examen.Core.Auth.Modelos
 {
  public class AuthenticationModel
     {

@@ -7,8 +7,8 @@ using Microsoft.Extensions.Logging;
 using Examen.Core.COMMON.Interfaces;
 using Examen.Core.COMMON.Models;
 using Microsoft.AspNetCore.Authorization;
-using Examen.Vue.Modelos;
-using Examen.Vue.Interfaces;
+using Examen.Core.Auth.Interfaces;
+using Examen.Core.Auth.Modelos;
 
 namespace Examen.Vue.Controllers
 {
