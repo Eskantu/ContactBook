@@ -56,7 +56,7 @@ jobs:
         env:
           ConnectionStrings__DefaultConnection: server=localhost;Database=AppDataBase_Test;User=sa;Password=Mayito.com.98
           #ConnectionStrings__DefaultConnection: Server=localhost;Database=AppDataBase_Test;User Id=sa;Password=qwerty123
-        run: dotnet test "$GITHUB_WORKSPACE/Test/Examen.Tests" -c Release --no-build
+        run: dotnet test "$GITHUB_WORKSPACE/Test/Examen.Tests" -c Release
         #run: dotnet test -c Release --verbosity diag --no-build
 
   # publish:
