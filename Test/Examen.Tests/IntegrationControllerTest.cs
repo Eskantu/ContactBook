@@ -16,7 +16,7 @@ namespace Examen.Tests
     public class IntegrationControllerTest
     {
         [Fact, TestPriority(-1)]
-        public async Task UsuarioControllerTest()
+        public void UsuarioControllerTest()
         {
            //await Utils.GenerateDataBase();
             Assert.Equal(1, 1);
