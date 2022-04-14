@@ -17,7 +17,7 @@ namespace Examen.Core.DAL
         public GenericRepository(IConnection connection)
         {
             _connection = connection;
-           
+
         }
 
         public string Error { get; private set; }
@@ -27,7 +27,7 @@ namespace Examen.Core.DAL
             bool result;
             try
             {
-                result= _connection.ExecuteNoQuery(CrearComando(parametros)) > 0;
+                result = _connection.ExecuteNoQuery(CrearComando(parametros)) > 0;
             }
             catch (Exception ex)
             {
@@ -64,7 +64,6 @@ namespace Examen.Core.DAL
             catch (Exception ex)
             {
                 Error = ex.Message;
-
             }
             return result;
         }
@@ -74,9 +73,29 @@ namespace Examen.Core.DAL
             string comando = $"{parametros.Nombre} ";
             parametros.Parametros.ForEach(item =>
             {
-                comando += $"{item.Key}={item.Value},";
+                comando += $"{item.Key}={formatValue(item.Value)},";
             });
             return comando[0..^1];
+        }
+
+        private object formatValue(object value)
+        {
+            object valueFormated=value;
+            string nameMember = value.GetType().GetTypeInfo().Name;
+            if (nameMember == "String")
+            {
+                valueFormated = @$"'{value}'";
+            }
+            if (nameMember == "Int")
+            {
+                valueFormated = @$"{value}";
+            }
+            //if (nameMember == "DateTime")
+            //{
+            //    DateTime date = value as DateTime;
+            //    valueFormated = @$"'{}'";
+            //}
+            return valueFormated;
         }
 
         public List<T> Read(SpParametros parametros)

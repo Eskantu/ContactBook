@@ -12,21 +12,13 @@ using Xunit;
 
 namespace Examen.Tests
 {
-   public class IntegrationControllerTest
+    [TestCaseOrderer("Examen.Tests.PriorityOrder", "Examen.Tests")]
+    public class IntegrationControllerTest
     {
-        [Fact]
+        [Fact, TestPriority(-1)]
         public async Task UsuarioControllerTest()
         {
-            // Create a DB context
-            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").AddEnvironmentVariables().Build();
-            var optionsBuilder = new DbContextOptionsBuilder<DbContextEFCore>();
-            optionsBuilder.UseSqlServer(configuration["ConnectionStrings:DefaultConnection"]);
-            var context = new DbContextEFCore(optionsBuilder.Options);
-
-            //Detel a DB
-            await context.Database.EnsureDeletedAsync();
-            //await context.Database.EnsureCreatedAsync();
-            await context.Database.MigrateAsync();
+           //await Utils.GenerateDataBase();
             Assert.Equal(1, 1);
 
             // Create controller
