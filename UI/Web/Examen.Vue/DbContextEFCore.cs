@@ -15,11 +15,22 @@ namespace Examen.Vue
 
         }
         public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<EstadoCivil> EstadoCivil { get; set; }
+        public DbSet<TipoContacto> TipoContacto { get; set; }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Usuario>(eb =>
             {
                 eb.HasKey(u => u.IdUsuario);
+            });
+            modelBuilder.Entity<EstadoCivil>(e =>
+            {
+                e.HasKey(u => u.IdEstadoCivil);
+            });
+            modelBuilder.Entity<TipoContacto>(e =>
+            {
+                e.HasKey(u => u.IdTipoContacto);
             });
         }
     }

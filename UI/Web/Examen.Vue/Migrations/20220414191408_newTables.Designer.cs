@@ -4,14 +4,16 @@ using Examen.Vue;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Examen.Vue.Migrations
 {
     [DbContext(typeof(DbContextEFCore))]
-    partial class DbContextEFCoreModelSnapshot : ModelSnapshot
+    [Migration("20220414191408_newTables")]
+    partial class newTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

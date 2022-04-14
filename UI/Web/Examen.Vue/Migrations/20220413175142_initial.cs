@@ -19,7 +19,7 @@ namespace Examen.Vue.Migrations
                     ApellidoPaterno = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Contrasenia = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsActive = table.Column<int>(type: "int", nullable: false),
                     CreadoPor = table.Column<int>(type: "int", nullable: false),
                     Modulos = table.Column<string>(type: "nvarchar(max)", nullable: true)
