@@ -19,7 +19,7 @@ namespace Examen.Tests.UnitTest
             if (database is null)
             {
                 database ??= new Database();
-                database.CreateDataBase();
+               database.CreateDataBase().Wait();
             }
             return _repository ??= FactoryRepository<T>.GetRepository(GetConnection());
         }
@@ -36,6 +36,6 @@ namespace Examen.Tests.UnitTest
 
     public class Database
     {
-        public async void CreateDataBase() => await Utils.GenerateDataBase();
+        public async Task<bool> CreateDataBase() => await Utils.GenerateDataBase();
     }
 }
