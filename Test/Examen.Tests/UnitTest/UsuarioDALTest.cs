@@ -1,13 +1,12 @@
 ﻿using Examen.Core.COMMON.Interfaces;
 using Examen.Core.COMMON.Models;
-using Examen.Tests.UnitTest;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Xunit;
 
-namespace Examen.Tests.UnitTests
+namespace Examen.Tests.UnitTest
 {
     [TestCaseOrderer("Examen.Tests.PriorityOrder", "Examen.Tests")]
     public class UsuarioDALTest : GenericTest<Usuario>

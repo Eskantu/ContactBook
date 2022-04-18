@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
-namespace Examen.Tests.UnitTests
+namespace Examen.Tests.UnitTest
 {
     public class GenericTest<T> where T : class
     {
