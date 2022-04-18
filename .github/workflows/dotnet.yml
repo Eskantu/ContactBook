@@ -22,7 +22,7 @@ jobs:
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
-      - name: Start SQL Server
+      - name: Start SQL Server 🏁
         run: |
           docker run -d --name SQLServer -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Mayito.com.98" -e "MSSQL_PID=Express" -p 1433:1433 -d mcr.microsoft.com/mssql/server:latest 
 
