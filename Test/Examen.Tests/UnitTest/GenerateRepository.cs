@@ -20,6 +20,7 @@ namespace Examen.Tests.UnitTest
             {
                 database ??= new Database();
                database.CreateDataBase().Wait();
+
             }
             return _repository ??= FactoryRepository<T>.GetRepository(GetConnection());
         }
