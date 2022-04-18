@@ -1,6 +1,5 @@
 ﻿using Examen.Core.COMMON.Interfaces;
 using Examen.Core.COMMON.Models;
-using Examen.Tests.UnitTests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
