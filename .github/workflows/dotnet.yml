@@ -57,7 +57,8 @@ jobs:
           ConnectionStrings__DefaultConnection: server=localhost,1433;Database=AppDataBase_Test;User=sa;Password=Mayito.com.98
           #ConnectionStrings__DefaultConnection: Server=localhost;Database=AppDataBase_Test;User Id=sa;Password=qwerty123
        # run: dotnet test "$GITHUB_WORKSPACE/Test/Examen.Tests" -c Release --no-build
-        run:  dotnet test -c Release --verbosity m --no-build
+        run:  dotnet test --filter "Examen.Tests.UnitTests.EstadoCivilDALTest" -c Release --verbosity m --no-build
+        run:  dotnet test --filter "Examen.Tests.UnitTests.UsuarioDALTest" -c Release --verbosity m --no-build
 
   # publish:
   #   runs-on: ubuntu-latest
