@@ -27,7 +27,7 @@ namespace Examen.Tests
                 // await context.Database.EnsureCreatedAsync();
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 returned = false;
             }
