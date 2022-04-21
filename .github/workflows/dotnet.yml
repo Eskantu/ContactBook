@@ -60,6 +60,7 @@ jobs:
         run: | 
           dotnet test --filter "Examen.Tests.UnitTest.EstadoCivilDALTest" -c Release --verbosity m --no-build
           dotnet test --filter "Examen.Tests.UnitTest.UsuarioDALTest" -c Release --verbosity m --no-build
+          dotnet test --filter "Examen.Tests.UnitTest.TipoContactoDALTest" -c Release --verbosity m --no-build
 
   # publish:
   #   runs-on: ubuntu-latest
