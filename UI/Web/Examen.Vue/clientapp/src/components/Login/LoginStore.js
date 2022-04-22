@@ -5,7 +5,7 @@ const store = {
     namespaced: true,
     state: {
         cargando: false,
-        credenciales: { username: 'superUser', password: 'qwerty123' }
+        credenciales: { username: '', password: '' }
     },
     mutations: {
 

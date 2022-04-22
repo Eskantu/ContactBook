@@ -7,28 +7,42 @@
         </v-toolbar>
         <v-card-text>
           <v-form>
+            <v-row no-gutters >
+              <v-col>
+                <v-text-field
+                  label="Nombre"
+                  type="text"
+                ></v-text-field>
+              </v-col>
+            </v-row>
+            <v-row no-gutters >
+              <v-col cols="5">
+                <v-text-field
+                  label="Apellido Paterno"
+                  type="text"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="2"></v-col>
+              <v-col cols="5">
+                <v-text-field
+                  label="Apellido Materno"
+                  type="text"
+                ></v-text-field>
+              </v-col>
+            </v-row>
             <v-text-field
-              v-model="usuario.username"
-              prepend-icon="person"
               label="username"
               type="text"
-              counter
             ></v-text-field>
             <v-text-field
-              v-model="usuario.email"
-              prepend-icon="email"
               label="email"
               type="text"
             ></v-text-field>
             <v-text-field
-              v-model="usuario.password"
-              prepend-icon="lock"
               label="password"
               type="password"
             ></v-text-field>
             <v-text-field
-              v-model="usuario.password2"
-              prepend-icon="lock"
               label="repeat password"
               type="password"
             ></v-text-field>

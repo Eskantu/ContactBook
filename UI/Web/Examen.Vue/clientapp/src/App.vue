@@ -3,7 +3,7 @@
     <Snackbar></Snackbar>
     <NavigationBar :show="shownavigationbar" v-if="user"></NavigationBar>
     <v-main>
-      <router-view />
+        <router-view />
     </v-main>
     <v-footer dark padless>
       <v-col class="text-center" cols="12">
@@ -22,7 +22,7 @@ export default {
   components: { Snackbar, NavigationBar },
   data() {
     return {
-      shownavigationbar:true
+      shownavigationbar: true,
     };
   },
   computed: {
