@@ -19,6 +19,7 @@ namespace Examen.Core.BIZ.Factory
         public  IContactoManager GetContactoManager() => new ContactoManager(FactoryRepository<Contacto>.GetRepository(connection));
         public  ITipoContactoManager GetTipoContactoManager() => new TipoContactoManager(FactoryRepository<TipoContacto>.GetRepository(connection));
         public  IEstadoCivilManager GetEstadoCivilManager() => new EstadoCivilManager(FactoryRepository<EstadoCivil>.GetRepository(connection));
+        public IUsuarioManager GetUsuarioManager() => new UsuarioManager(FactoryRepository<Usuario>.GetRepository(connection));
 
     }
 }

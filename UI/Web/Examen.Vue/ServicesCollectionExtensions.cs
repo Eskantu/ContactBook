@@ -20,6 +20,7 @@ namespace Examen.Vue
             services.AddSingleton<IContactoManager>(x => factoryManager.GetContactoManager());
             services.AddSingleton<ITipoContactoManager>(x => factoryManager.GetTipoContactoManager());
             services.AddSingleton<IEstadoCivilManager>(x => factoryManager.GetEstadoCivilManager());
+            services.AddSingleton<IUsuarioManager>(x => factoryManager.GetUsuarioManager());
         }
     }
 }
