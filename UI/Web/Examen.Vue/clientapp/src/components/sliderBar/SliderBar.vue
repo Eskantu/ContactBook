@@ -144,6 +144,7 @@ export default {
 //     transform: rotate(90deg);
 //   }
 // }
+
 .drawer-sidebar{
     ::-webkit-scrollbar {
     width: 8px;
