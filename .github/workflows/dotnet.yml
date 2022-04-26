@@ -12,6 +12,8 @@ env:
   DOTNET_VERSION: '3.1.x'
   AZURE_WEBAPP_NAME: contact-book
 
+  workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
