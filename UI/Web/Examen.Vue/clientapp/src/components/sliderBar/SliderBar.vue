@@ -166,7 +166,7 @@ export default {
     background: #888; 
     }
     overflow-y: scroll;
-    -webkit-mask-position: left bottom;
+    mask-position: left bottom;
     transition: mask-position 0.3s, -webkit-mask-position 0.3s;
 }
 </style>
