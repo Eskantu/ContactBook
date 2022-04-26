@@ -92,7 +92,7 @@ namespace Examen.Vue
                 if (env.IsDevelopment())
                     spa.Options.SourcePath = "clientapp";
                 else
-                    spa.Options.SourcePath = "clientapp";
+                    spa.Options.SourcePath = "clientapp/dist";
 
                 if (env.IsDevelopment())
                 {
