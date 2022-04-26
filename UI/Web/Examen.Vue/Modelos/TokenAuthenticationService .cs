@@ -27,7 +27,7 @@ namespace Examen.Vue.Modelos
       {
         Apellidos = "Escalante",
         Email="example@example.com",
-        Foto="https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjNy7KHhM_eAhVFJ1AKHUqcD_4QjRx6BAgBEAU&url=https%3A%2F%2Fwww.google.com%2F&psig=AOvVaw2_X_Z_Z_q_Z_z_Zq_Z_z_z&ust=1589788240876623",
+        Foto="https://randomuser.me/api/portraits/men/81.jpg",
         IdUsuario=1,
         IsAuthenticated=true,
         Message="User authenticated",

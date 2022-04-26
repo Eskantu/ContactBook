@@ -10,7 +10,7 @@
             <v-text-field
               :disabled="_loading"
               :rules="userRules"
-              v-model="credenciales.username"
+              v-model="credenciales.UserName"
               prepend-icon="person"
               label="username or email"
               type="text"
@@ -18,7 +18,7 @@
             <v-text-field
               :disabled="_loading"
               :rules="passwordRules"
-              v-model="credenciales.password"
+              v-model="credenciales.Password"
               prepend-icon="lock"
               label="password"
               type="password"

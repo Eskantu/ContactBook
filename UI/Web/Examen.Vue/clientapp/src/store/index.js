@@ -11,7 +11,7 @@ import SlideBarStore from '../components/sliderBar/slidebarStore'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 Vue.use(Vuex)
-axios.defaults.baseURL = "http://localhost:5001/api/";
+axios.defaults.baseURL = `${window.location.origin}/api/`;
 Vue.use(VueAxios, axios)
 export default new Vuex.Store({
   state: {

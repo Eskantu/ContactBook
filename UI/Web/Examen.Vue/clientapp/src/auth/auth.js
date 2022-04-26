@@ -10,7 +10,7 @@ async function register(usuario) {
 
 }
 function Login(credenciales) {
-    return axios.post("user/buscar", credenciales.state.credenciales)
+    return axios.post("Authentication/RequestToken", credenciales.state.credenciales)
 }
 async function setUserLogged(userLogged) {
     Cookies.set('userLogged', userLogged);

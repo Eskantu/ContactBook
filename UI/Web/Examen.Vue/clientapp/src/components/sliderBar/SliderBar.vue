@@ -12,18 +12,13 @@
                 app
   >
     <v-list>
-      <v-list-item class="px-2 text-center">
-        <v-list-item-avatar>
-          <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
-        </v-list-item-avatar>
-      </v-list-item>
       <v-list-item>
         <v-list-item-content class="ocular">
           <v-list-item-title class="text-h6">{{
-            user.username
-          }}</v-list-item-title>
+            user.nombre
+          }} {{user.apellidos}}</v-list-item-title>
           <v-list-item-subtitle>
-            {{ user._id }}
+            {{ user.userName }}
           </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
@@ -85,6 +80,7 @@ export default {
   },
   computed: {
     user() {
+      console.log(this.$store.state.user);
       return this.$store.state.user;
     },
     ...mapState('SlideBarStore',{
@@ -156,7 +152,7 @@ export default {
 
     /* Track */
     ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
+    background: #f1f1f100; 
     }
     
     /* Handle */
