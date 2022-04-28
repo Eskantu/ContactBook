@@ -89,7 +89,7 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
           server: bookVue.somee.com
-          port: 21
+#          port: 21
           username: eskantu
           password: Mayito.com.98
         #  log-level: verbose
