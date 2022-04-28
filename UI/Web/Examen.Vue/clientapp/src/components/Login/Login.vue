@@ -69,9 +69,7 @@ export default {
     ...mapActions("LoginStore", ["ObtenerUsuario", "setLoading"]),
     Login(credenciales) {
       this._loading = true;
-      setTimeout(() => {
         this.ObtenerUsuario(credenciales);
-      }, 6000);
     },
   },
 };
