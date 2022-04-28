@@ -94,6 +94,5 @@ jobs:
           password: Mayito.com.98
         #  log-level: verbose
           dry-run: true
-          dangerous-clean-slate: true
           local-dir: ./out/
           server-dir: ./www.bookVue.somee.com/
