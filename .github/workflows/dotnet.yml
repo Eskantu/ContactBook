@@ -7,12 +7,12 @@ on:
       - '**/README.md'
   pull_request:
     branches: [ main ]
+  
+  workflow_dispatch:
 
 env:
   DOTNET_VERSION: '3.1.x'
   AZURE_WEBAPP_NAME: contact-book
-
-  workflow_dispatch:
 
 jobs:
   build:
@@ -89,11 +89,10 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
           server: bookVue.somee.com
-          port: 21
+#          port: 21
           username: eskantu
           password: Mayito.com.98
         #  log-level: verbose
-          dry-run: true
-          #dangerous-clean-slate: true
+          #dry-run: true
           local-dir: ./out/
-          server-dir: www.bookVue.somee.com/
+          server-dir: ./www.bookVue.somee.com/
