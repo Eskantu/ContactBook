@@ -31,7 +31,7 @@
             :disabled="!valid"
             :loading="_loading"
             @click="Login(credenciales)"
-            color="success"
+            color="error"
             >Login</v-btn
           >
         </v-card-actions>
