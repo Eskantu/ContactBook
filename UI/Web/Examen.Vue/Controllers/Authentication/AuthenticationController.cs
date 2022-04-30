@@ -9,6 +9,11 @@ using Examen.Core.COMMON.Models;
 using Microsoft.AspNetCore.Authorization;
 using Examen.Core.Auth.Interfaces;
 using Examen.Core.Auth.Modelos;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
+using Examen.Vue.Modelos;
 
 namespace Examen.Vue.Controllers
 {
@@ -16,7 +21,7 @@ namespace Examen.Vue.Controllers
   [ApiController]
   public class AuthenticationController : ControllerBase
   {
-     private readonly IAuthenticateService _authService;
+    private readonly IAuthenticateService _authService;
     public AuthenticationController(IAuthenticateService authService)
     {
       this._authService = authService;
@@ -30,14 +35,38 @@ namespace Examen.Vue.Controllers
       {
         return BadRequest("Invalid Model");
       }
-      if (_authService.IsAuthenticated(request, out AuthenticationModel token))
+      if (_authService.IsAuthenticated(request, out AuthenticationModel user))
       {
-        return Ok(token);
+        string value = JsonConvert.SerializeObject(user);
+        HttpContext.Session.SetString("user", value);
+        return Ok(user);
       }
       else
       {
         return BadRequest("Invalid credentials");
       }
     }
+
+    [HttpPost, Route("getSession")]
+    public IActionResult GetSession([FromBody] TokenClient token)
+    {
+      if (!ModelState.IsValid)
+      {
+        return BadRequest("Invalid Model");
+      }
+      if (string.IsNullOrEmpty(token.Token) || token.Token=="undefined")
+      {
+        return BadRequest("Session Expired");
+      }
+      if(_authService.ValidateToken(token.Token) && !string.IsNullOrEmpty(HttpContext.Session.GetString("user")))
+      {
+        return Ok(JsonConvert.DeserializeObject<AuthenticationModel>(HttpContext.Session.GetString("user")));
+      }
+      else
+      {
+        return BadRequest("Session expired");
+      }
+    }
+
   }
 }

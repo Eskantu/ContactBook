@@ -73,7 +73,7 @@ namespace Examen.Core.DAL
       string comando = $"{parametros.Nombre} ";
       parametros.Parametros.ForEach(item =>
       {
-        comando += $"{item.Key}={formatValue(item.Value)},";
+          comando += $"{item.Key}={formatValue(item.Value)},";
       });
       return comando[0..^1];
     }

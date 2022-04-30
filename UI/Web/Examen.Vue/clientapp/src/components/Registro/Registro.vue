@@ -10,7 +10,8 @@
             <v-row no-gutters >
               <v-col>
                 <v-text-field
-                  label="Nombre"
+                v-model="usuario.nombre"
+                  label="nombre"
                   type="text"
                 ></v-text-field>
               </v-col>
@@ -18,27 +19,32 @@
             <v-row no-gutters >
               <v-col cols="5">
                 <v-text-field
-                  label="Apellido Paterno"
+                v-model="usuario.apellidoPaterno"
+                  label="apellido paterno"
                   type="text"
                 ></v-text-field>
               </v-col>
               <v-col cols="2"></v-col>
               <v-col cols="5">
                 <v-text-field
-                  label="Apellido Materno"
+                v-model="usuario.apellidoMaterno"
+                  label="apellido materno"
                   type="text"
                 ></v-text-field>
               </v-col>
             </v-row>
             <v-text-field
+              v-model="usuario.username"
               label="username"
               type="text"
             ></v-text-field>
             <v-text-field
+              v-model="usuario.email"
               label="email"
               type="text"
             ></v-text-field>
             <v-text-field
+              v-model="usuario.contrasenia"
               label="password"
               type="password"
             ></v-text-field>
@@ -49,7 +55,7 @@
           </v-form>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn @click="CrearUsuario" color="success">Sign in</v-btn>
+            <v-btn @click="CrearUsuario(usuario)" color="success">Sign in</v-btn>
           </v-card-actions>
         </v-card-text>
       </v-card>

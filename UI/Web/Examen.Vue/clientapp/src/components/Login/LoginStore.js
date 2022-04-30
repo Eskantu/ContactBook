@@ -8,7 +8,9 @@ const store = {
         credenciales: { UserName: '', Password: '' }
     },
     mutations: {
-
+    cleanCredenciales(state) {
+        state.credenciales = { UserName: '', Password: '' }
+    }
     },
     actions: {
         ObtenerUsuario(credenciales) {
@@ -17,6 +19,7 @@ const store = {
                 StorePrincipal.commit("SnackStore/SetSnack", "Login correcto")
                 auth.setUserLogged(res.data)
                 this.cargando = false
+              //  commit('cleanCredenciales')
                 router.push({ name: 'Home' })
             }).catch(() => {
                 StorePrincipal.commit("SnackStore/SetSnack", "Credenciales incorrectas")

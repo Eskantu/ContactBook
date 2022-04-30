@@ -34,6 +34,8 @@ namespace Examen.Vue
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddDbContext<DbContextEFCore>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            
             services.Configure<TokenManagement>(Configuration.GetSection("tokenManagement"));
             var token= Configuration.GetSection("tokenManagement").Get<TokenManagement>();
             services.AddScoped<IAuthenticateService, Modelos.TokenAuthenticationService>();
@@ -65,8 +67,9 @@ namespace Examen.Vue
                     ValidateAudience = true
                 };
             });
-            services.AddDbContext<DbContextEFCore>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            
+             services.AddMvc()
+            .AddSessionStateTempDataProvider();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,6 +82,7 @@ namespace Examen.Vue
 
 
             app.UseRouting();
+            app.UseSession();
             app.UseSpaStaticFiles();
             app.UseAuthentication();
             app.UseAuthorization();

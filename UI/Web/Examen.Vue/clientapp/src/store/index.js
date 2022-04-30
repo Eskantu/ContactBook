@@ -7,6 +7,8 @@ import NewStore from '../views/New/viewStore'
 import UserStore from '../views/users/UserStore'
 import UploadStore from '../views/uploadFile/UploadStore'
 import SlideBarStore from '../components/sliderBar/slidebarStore'
+import AppBarStore from '../components/AppBar/AppBarStore'
+import auth  from "../auth/auth";
 // import auth from '../auth/auth'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
@@ -24,6 +26,14 @@ export default new Vuex.Store({
 
   },
   actions: {
+    getSession() {
+      return axios.post('/Authentication/getSession',{token:`${auth.getUserLogged()?auth.getUserLogged():''}`},'json')
+    }
   },
-  modules: { RegistroStore, SnackStore, LoginStore, NewStore, UserStore, UploadStore, SlideBarStore },
+  getters: {
+    ShowNavigationbar(state) {
+      return state.user !== null
+    },
+  },
+  modules: {AppBarStore, RegistroStore, SnackStore, LoginStore, NewStore, UserStore, UploadStore, SlideBarStore },
 });

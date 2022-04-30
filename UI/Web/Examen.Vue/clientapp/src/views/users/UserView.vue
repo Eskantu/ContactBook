@@ -74,20 +74,22 @@
                   </td>
                 </tr>
               </template>
-              <template v-slot:[`item.username`]="{ item }">
+              <template v-slot:[`item.nombre`]="{ item }">
                 <tr>
                   <td>
-                    {{ item.username }} <br />
+                    {{ item.nombre }} {{ item.apellidoPaterno }}
+                    {{ item.apellidoMaterno }}
+                    <br />
                     <div class="text-md-caption blue-grey--text">
-                      {{ item._id }}
+                      {{ item.userName }}
                     </div>
                   </td>
                 </tr>
               </template>
-              <template v-slot:[`item.created`]="{ item }">
+              <template v-slot:[`item.fechaCreacion`]="{ item }">
                 <tr>
                   <td>
-                    {{ item.created | formatDate }}
+                    {{ item.fechaCreacion | formatDate }}
                   </td>
                 </tr>
               </template>
@@ -108,10 +110,9 @@ export default {
     };
   },
   created() {
+    console.log("created");
     this._cargando = true;
-    setTimeout(() => {
-      this.ObtenerUsuarios();
-    }, 6000);
+    this.ObtenerUsuarios();
   },
   methods: {
     ...mapActions("UserStore", ["ObtenerUsuarios", "SetSearch", "SetLoading"]),

@@ -5,11 +5,12 @@ const store = {
     state: {
         cargando: true,
         userList: [], userSelect: {}, search: '', headers: [
-            { text: 'Nombre', value: 'username' },
+            { text: 'Nombre', value: 'nombre' },
+            { text: 'Email', value: 'email' },
             { text: 'Activo', value: 'isActive', sortable: false },
-            { text: 'Creado por', value: 'createdFor' },
-            { text: 'Modulos', value: 'modules' },
-            { text: 'Fecha Creacion', value: 'created' },
+            { text: 'Creado por', value: 'creadoPor' },
+            { text: 'Modulos', value: 'modulos' },
+            { text: 'Fecha Creacion', value: 'fechaCreacion' },
         ]
     },
     mutations: {
@@ -20,7 +21,6 @@ const store = {
     },
     actions: {
         ObtenerUsuarios({ commit }) {
-            console.log('sdaksdjhkasbdkadoñsdfñosdf')
             axios.get('/Usuario').then(res => commit("setUserList", res.data)).catch(e => console.log(e))
         },
         SetSearch({ state }, search) {

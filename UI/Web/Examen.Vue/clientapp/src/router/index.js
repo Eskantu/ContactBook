@@ -80,7 +80,17 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   const rutaAuth = to.matched.some(record => record.meta.requiresAuth)
   if (rutaAuth === true && StorePrincipal.state.user === null) {
-    next({ name: 'Login' })
+    StorePrincipal.dispatch('getSession').then(res => {
+      StorePrincipal.commit('AppBarStore/setShowAppbar')
+      StorePrincipal.commit('setUserProfile', res.data)
+      StorePrincipal.commit('SlideBarStore/setUserInfo', res.data)
+      StorePrincipal.commit('SlideBarStore/SetShowMutation')
+      next()
+    }).catch(() => {
+      StorePrincipal.commit("SnackStore/SetSnack", 'err.data')
+      StorePrincipal.commit('AppBarStore/setShowAppbar', false)
+      next({ name: 'Login' })
+    })
   }
   else { next() }
 })

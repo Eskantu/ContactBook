@@ -79,12 +79,9 @@ export default {
     };
   },
   computed: {
-    user() {
-      console.log(this.$store.state.user);
-      return this.$store.state.user;
-    },
     ...mapState('SlideBarStore',{
       show: (state) => state.show,
+      user: (state) => state.userInfo
     }),
 
   },

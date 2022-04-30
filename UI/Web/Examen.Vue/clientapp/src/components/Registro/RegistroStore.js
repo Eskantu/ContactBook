@@ -1,7 +1,6 @@
-import StorePrincipal from '../../store/index'
+ import StorePrincipal from '../../store/index'
 
-import auth from '../../auth/auth'
-import axios from 'axios'
+ import auth from '../../auth/auth'
 const store = {
     namespaced: true,
     state: { usuario: {}, error: '' },
@@ -11,19 +10,17 @@ const store = {
         }
     },
     actions: {
-        CrearUsuario(user) {
-            auth.register(user).then(res => {
+        CrearUsuario( {commit },usuario) {
+            console.log(usuario)
+            console.log(commit)
+            auth.register(usuario).then(res => {
                 StorePrincipal.commit('SnackStore/SetSnack', 'Code:' + res.status + ' Usuario creado')
-            }).catch(() => {
-                StorePrincipal.commit('SnackStore/SetSnack', 'Error al crear usuario, verifique datos')
+            }).catch((error) => {
+                console.log(error.response.data)
+                StorePrincipal.commit('SnackStore/SetSnack', 'Error al crear usuario,'+error.response.data)
             })
 
         },
-        ObtenerUsuario(/*user*/) {
-            axios.post('/user',).then(() => {
-               
-            }).catch(() => { })
-        }
     },
 };
 export default store;

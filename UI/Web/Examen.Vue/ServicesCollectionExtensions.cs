@@ -14,7 +14,12 @@ namespace Examen.Vue
     {
         public static void AddManagers(this IServiceCollection services, IConfiguration configuration)
         {
-            string connectionString = configuration.GetConnectionString("MSSQLServerSomee");
+#if DEBUG
+            string connectionString = configuration.GetConnectionString("DevlopConnection");
+#else
+            string connectionString = configuration.GetConnectionString("ProductionConnection");
+#endif
+
 
             FactoryManager factoryManager = new FactoryManager(connectionString);
             services.AddSingleton<IContactoManager>(x => factoryManager.GetContactoManager());

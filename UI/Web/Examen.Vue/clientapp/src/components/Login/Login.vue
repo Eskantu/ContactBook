@@ -6,7 +6,7 @@
           <v-toolbar-title><h3>LOGIN</h3></v-toolbar-title>
         </v-toolbar>
         <v-card-text>
-          <v-form v-model="valid">
+          <v-form @submit="Login" v-model="valid">
             <v-text-field
               :disabled="_loading"
               :rules="userRules"
@@ -30,8 +30,8 @@
           <v-btn
             :disabled="!valid"
             :loading="_loading"
-            @click="Login(credenciales)"
-            color="error"
+            @click="ObtenerUsuario(credenciales)"
+            color="success"
             >Login</v-btn
           >
         </v-card-actions>
@@ -67,10 +67,6 @@ export default {
   },
   methods: {
     ...mapActions("LoginStore", ["ObtenerUsuario", "setLoading"]),
-    Login(credenciales) {
-      this._loading = true;
-        this.ObtenerUsuario(credenciales);
-    },
   },
 };
 </script>

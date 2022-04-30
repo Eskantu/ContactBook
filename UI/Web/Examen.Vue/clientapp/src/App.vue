@@ -1,9 +1,10 @@
 <template>
   <v-app>
     <Snackbar></Snackbar>
-    <NavigationBar :show="shownavigationbar" v-if="user"></NavigationBar>
+    <NavigationBar :show="shownavigationbar"></NavigationBar>
+    <AppBar></AppBar>
     <v-main>
-        <router-view />
+      <router-view />
     </v-main>
     <v-footer dark padless>
       <v-col class="text-center" cols="12">
@@ -15,20 +16,18 @@
 
 <script>
 import Snackbar from "./components/Snackbar/Snackbar.vue";
-// import StorePrincipal from "./store/index";
 import NavigationBar from "./components/sliderBar/SliderBar.vue";
+import AppBar from "./components/AppBar/AppBar.vue";
+
 export default {
   name: "App",
-  components: { Snackbar, NavigationBar },
+  components: { Snackbar, NavigationBar,AppBar },
   data() {
     return {
       shownavigationbar: true,
     };
   },
-  computed: {
-    user: function () {
-      return this.$store.state.user != null;
-    },
+  methods: {
   },
 };
 </script>
