@@ -78,7 +78,7 @@ namespace Examen.Vue.Modelos
         var user = tokenHandler.ValidateToken(token, validationParameters, out SecurityToken validatedToken);
         return true;
       }
-      catch (System.Exception ex)
+      catch (System.Exception)
       {
         return false;
       }
