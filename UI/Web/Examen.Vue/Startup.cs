@@ -34,11 +34,11 @@ namespace Examen.Vue
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddControllers();
-// #if DEBUG
-//       string connectionString = Configuration.GetConnectionString("DevlopConnection");
-// #else
-// #endif
+#if DEBUG
+      string connectionString = Configuration.GetConnectionString("DevlopConnection");
+#else
       string connectionString = Configuration.GetConnectionString("ProductionConnection");
+#endif
       services.AddDbContext<DbContextEFCore>(options => options.UseSqlServer(connectionString));
 
       services.Configure<TokenManagement>(Configuration.GetSection("tokenManagement"));
