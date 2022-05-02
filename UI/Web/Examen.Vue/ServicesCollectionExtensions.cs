@@ -10,22 +10,22 @@ using System.Threading.Tasks;
 
 namespace Examen.Vue
 {
-    public static class ServicesCollectionExtensions
+  public static class ServicesCollectionExtensions
+  {
+    public static void AddManagers(this IServiceCollection services, IConfiguration configuration)
     {
-        public static void AddManagers(this IServiceCollection services, IConfiguration configuration)
-        {
 //#if DEBUG
-//            string connectionString = configuration.GetConnectionString("DevlopConnection");
+//      string connectionString = configuration.GetConnectionString("DevlopConnection");
 //#else
 //#endif
-            string connectionString = configuration.GetConnectionString("ProductionConnection");
+      string connectionString = configuration.GetConnectionString("ProductionConnection");
 
 
-            FactoryManager factoryManager = new FactoryManager(connectionString);
-            services.AddSingleton<IContactoManager>(x => factoryManager.GetContactoManager());
-            services.AddSingleton<ITipoContactoManager>(x => factoryManager.GetTipoContactoManager());
-            services.AddSingleton<IEstadoCivilManager>(x => factoryManager.GetEstadoCivilManager());
-            services.AddSingleton<IUsuarioManager>(x => factoryManager.GetUsuarioManager());
-        }
+      FactoryManager factoryManager = new FactoryManager(connectionString);
+      services.AddSingleton<IContactoManager>(x => factoryManager.GetContactoManager());
+      services.AddSingleton<ITipoContactoManager>(x => factoryManager.GetTipoContactoManager());
+      services.AddSingleton<IEstadoCivilManager>(x => factoryManager.GetEstadoCivilManager());
+      services.AddSingleton<IUsuarioManager>(x => factoryManager.GetUsuarioManager());
     }
+  }
 }
