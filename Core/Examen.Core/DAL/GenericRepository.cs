@@ -86,7 +86,7 @@ namespace Examen.Core.DAL
       {
         valueFormated = @$"'{value}'";
       }
-      if (nameMember == "Int")
+      if (nameMember == "Int32")
       {
         valueFormated = @$"{value}";
       }
