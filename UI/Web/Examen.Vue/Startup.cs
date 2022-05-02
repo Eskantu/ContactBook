@@ -34,11 +34,11 @@ namespace Examen.Vue
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddControllers();
-#if DEBUG
-      string connectionString = Configuration.GetConnectionString("DevlopConnection");
-#else
+// #if DEBUG
+//       string connectionString = Configuration.GetConnectionString("DevlopConnection");
+// #else
+// #endif
       string connectionString = Configuration.GetConnectionString("ProductionConnection");
-#endif
       services.AddDbContext<DbContextEFCore>(options => options.UseSqlServer(connectionString));
 
       services.Configure<TokenManagement>(Configuration.GetSection("tokenManagement"));
@@ -49,7 +49,7 @@ namespace Examen.Vue
       {
         configuration.RootPath = "clientapp/dist";
       });
-      services.AddManagers(Configuration);
+      services.AddManagers(Configuration, connectionString);
       //    var provider = services.BuildServiceProvider();
       //    var myService = provider.GetService<IContactoManager>();
       //    myService.ObtenerTodos(new SpParametros("SpAgendaWinForm", new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("@Opcion", 1), })).ForEach(item =>

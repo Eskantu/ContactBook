@@ -12,14 +12,8 @@ namespace Examen.Vue
 {
   public static class ServicesCollectionExtensions
   {
-    public static void AddManagers(this IServiceCollection services, IConfiguration configuration)
+    public static void AddManagers(this IServiceCollection services, IConfiguration configuration, string connectionString)
     {
-#if DEBUG
-     string connectionString = configuration.GetConnectionString("DevlopConnection");
-#else
-      string connectionString = configuration.GetConnectionString("ProductionConnection");
-#endif
-
 
       FactoryManager factoryManager = new FactoryManager(connectionString);
       services.AddSingleton<IContactoManager>(x => factoryManager.GetContactoManager());
