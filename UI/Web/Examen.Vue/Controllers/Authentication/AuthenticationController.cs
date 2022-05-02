@@ -56,7 +56,7 @@ namespace Examen.Vue.Controllers
       }
       if (string.IsNullOrEmpty(token.Token) || token.Token=="undefined")
       {
-        return BadRequest("Session Expired");
+        return Unauthorized("Session expired");
       }
       if(_authService.ValidateToken(token.Token) && !string.IsNullOrEmpty(HttpContext.Session.GetString("user")))
       {
@@ -64,7 +64,7 @@ namespace Examen.Vue.Controllers
       }
       else
       {
-        return BadRequest("Session expired");
+        return Unauthorized("Session expired");
       }
     }
 

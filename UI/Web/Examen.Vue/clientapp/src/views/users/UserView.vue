@@ -110,7 +110,6 @@ export default {
     };
   },
   created() {
-    console.log("created");
     this._cargando = true;
     this.ObtenerUsuarios();
   },

@@ -79,20 +79,28 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   const rutaAuth = to.matched.some(record => record.meta.requiresAuth)
-  if (rutaAuth === true && StorePrincipal.state.user === null) {
-    StorePrincipal.dispatch('getSession').then(res => {
-      StorePrincipal.commit('AppBarStore/setShowAppbar')
-      StorePrincipal.commit('setUserProfile', res.data)
-      StorePrincipal.commit('SlideBarStore/setUserInfo', res.data)
-      StorePrincipal.commit('SlideBarStore/SetShowMutation')
+  const pathWithoutAuth = '/Login /Logout /Registro'.split(' ')
+  if (pathWithoutAuth.includes(to.path)) {
+    StorePrincipal.commit('AppBarStore/setShowAppbar', false)
+    StorePrincipal.dispatch('SlideBarStore/SetShow', false)
+    next()
+  } else {
+    if (rutaAuth===true) {
+      StorePrincipal.dispatch('getSession').then(res => {
+        StorePrincipal.commit('setUserProfile', res.data)
+        StorePrincipal.commit('SlideBarStore/setUserInfo', res.data)
+        StorePrincipal.commit('SlideBarStore/SetShowMutation', true)
+        StorePrincipal.commit('AppBarStore/setShowAppbar', true)
+        next()
+      }).catch((err) => {
+        StorePrincipal.commit("SnackStore/SetSnack", err.response.data)
+        StorePrincipal.commit('AppBarStore/setShowAppbar', false)
+        next({ name: 'Login' })
+      })
+    } else {
       next()
-    }).catch(() => {
-      StorePrincipal.commit("SnackStore/SetSnack", 'err.data')
-      StorePrincipal.commit('AppBarStore/setShowAppbar', false)
-      next({ name: 'Login' })
-    })
+    }
   }
-  else { next() }
 })
 
 export default router;

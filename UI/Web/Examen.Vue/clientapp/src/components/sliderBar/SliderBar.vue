@@ -47,7 +47,7 @@
               <v-list-item-title>configuracion</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <v-list-item @click="Salir" link>
+          <v-list-item :to="'/logout'" @click="Salir" link>
             <v-list-item-icon>
               <v-icon>logout</v-icon>
             </v-list-item-icon>
@@ -88,7 +88,6 @@ export default {
   methods: {
     Salir() {
       auth.deleteUserLogged();
-      this.$store.state.user = null;
       router.push({ name: "Login" });
     },
   },

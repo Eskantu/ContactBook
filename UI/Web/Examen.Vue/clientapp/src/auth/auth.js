@@ -6,7 +6,7 @@ async function register(usuario) {
 
 }
 function Login(credenciales) {
-    return axios.post("Authentication/RequestToken", credenciales.state.credenciales)
+    return axios.post("Authentication/RequestToken", credenciales)
 }
 async function setUserLogged(userLogged) {
     Cookies.set('token', userLogged.token);
@@ -15,7 +15,7 @@ function getUserLogged() {
     return Cookies.get('token')
 }
 function deleteUserLogged() {
-    Cookies.remove('userLogged');
+    Cookies.remove('token');
 }
 export default {
     register, Login, setUserLogged, getUserLogged, deleteUserLogged

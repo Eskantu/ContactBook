@@ -11,12 +11,9 @@ const store = {
     },
     actions: {
         CrearUsuario( {commit },usuario) {
-            console.log(usuario)
-            console.log(commit)
             auth.register(usuario).then(res => {
                 StorePrincipal.commit('SnackStore/SetSnack', 'Code:' + res.status + ' Usuario creado')
             }).catch((error) => {
-                console.log(error.response.data)
                 StorePrincipal.commit('SnackStore/SetSnack', 'Error al crear usuario,'+error.response.data)
             })
 

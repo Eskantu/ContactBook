@@ -5,9 +5,8 @@ const store = {
     showAppbar: false,
   },
   mutations: {
-    setShowAppbar(state) {
-      console.log('setShowAppbar')
-      state.showAppbar = !state.showAppbar;
+    setShowAppbar(state, value) {
+      state.showAppbar = value;
     },
   },
 };

@@ -13,13 +13,14 @@ const store = {
     }
     },
     actions: {
-        ObtenerUsuario(credenciales) {
+        ObtenerUsuario({ commit }, credenciales) {
+            console.log(credenciales)
             auth.Login(credenciales).then(res => {
                 StorePrincipal.commit("setUserProfile", res.data)
                 StorePrincipal.commit("SnackStore/SetSnack", "Login correcto")
                 auth.setUserLogged(res.data)
                 this.cargando = false
-              //  commit('cleanCredenciales')
+                commit('cleanCredenciales')
                 router.push({ name: 'Home' })
             }).catch(() => {
                 StorePrincipal.commit("SnackStore/SetSnack", "Credenciales incorrectas")

@@ -5,16 +5,16 @@ const store = {
     userInfo: {}
   },
   mutations: {
-    SetShowMutation(state) {
-      state.show = !state.show
+    SetShowMutation(state, value) {
+      state.show = value;
     },
     setUserInfo(state, userInfo) {
       state.userInfo = userInfo
     }
   },
   actions: {
-    SetShow() {
-      store.commit('SetShowMutation')
+    SetShow( {commit }, value) {
+      commit('SetShowMutation',value)
     }
   }
 }
