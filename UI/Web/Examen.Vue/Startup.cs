@@ -21,89 +21,96 @@ using Examen.Core.Auth.Interfaces;
 
 namespace Examen.Vue
 {
-    public class Startup
+  public class Startup
+  {
+    public Startup(IConfiguration configuration)
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddControllers();
-            services.AddDbContext<DbContextEFCore>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            
-            services.Configure<TokenManagement>(Configuration.GetSection("tokenManagement"));
-            var token= Configuration.GetSection("tokenManagement").Get<TokenManagement>();
-            services.AddScoped<IAuthenticateService, Modelos.TokenAuthenticationService>();
-            services.AddScoped<IUserService, UserService>();
-            services.AddSpaStaticFiles(configuration =>
-            {
-               configuration.RootPath = "clientapp/dist";
-            });
-            services.AddManagers(Configuration);
-            //    var provider = services.BuildServiceProvider();
-            //    var myService = provider.GetService<IContactoManager>();
-            //    myService.ObtenerTodos(new SpParametros("SpAgendaWinForm", new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("@Opcion", 1), })).ForEach(item =>
-            //    {
-            //        Console.WriteLine($"{item.IdContacto}----->{item.Nombre} {item.ApellidoPaterno} {item.ApellidoMaterno}");
-            //    });
-            services.AddAuthentication(x=>{
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(x=>{
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateLifetime = true,
-                    ClockSkew = TimeSpan.Zero,
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.ASCII.GetBytes(token.Secret)),
-                    ValidateIssuer = true,
-                    ValidateAudience = true
-                };
-            });
-             services.AddMvc()
-            .AddSessionStateTempDataProvider();
-            services.AddSession();
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-
-            app.UseRouting();
-            app.UseSession();
-            app.UseSpaStaticFiles();
-            app.UseAuthentication();
-            app.UseAuthorization();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-
-            app.UseSpa(spa =>
-            {
-                if (env.IsDevelopment())
-                    spa.Options.SourcePath = "clientapp";
-                else
-                    spa.Options.SourcePath = "clientapp/dist";
-
-                if (env.IsDevelopment())
-                {
-                    spa.UseVueCli(npmScript: "serve");
-                }
-
-            });
-        }
+      Configuration = configuration;
     }
+
+    public IConfiguration Configuration { get; }
+
+    // This method gets called by the runtime. Use this method to add services to the container.
+    public void ConfigureServices(IServiceCollection services)
+    {
+      services.AddControllers();
+#if DEBUG
+      string connectionString = Configuration.GetConnectionString("DevlopConnection");
+#else
+      string connectionString = Configuration.GetConnectionString("ProductionConnection");
+#endif
+      services.AddDbContext<DbContextEFCore>(options => options.UseSqlServer(connectionString));
+
+      services.Configure<TokenManagement>(Configuration.GetSection("tokenManagement"));
+      var token = Configuration.GetSection("tokenManagement").Get<TokenManagement>();
+      services.AddScoped<IAuthenticateService, Modelos.TokenAuthenticationService>();
+      services.AddScoped<IUserService, UserService>();
+      services.AddSpaStaticFiles(configuration =>
+      {
+        configuration.RootPath = "clientapp/dist";
+      });
+      services.AddManagers(Configuration);
+      //    var provider = services.BuildServiceProvider();
+      //    var myService = provider.GetService<IContactoManager>();
+      //    myService.ObtenerTodos(new SpParametros("SpAgendaWinForm", new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("@Opcion", 1), })).ForEach(item =>
+      //    {
+      //        Console.WriteLine($"{item.IdContacto}----->{item.Nombre} {item.ApellidoPaterno} {item.ApellidoMaterno}");
+      //    });
+      services.AddAuthentication(x =>
+      {
+        x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+      }).AddJwtBearer(x =>
+      {
+        x.RequireHttpsMetadata = false;
+        x.SaveToken = true;
+        x.TokenValidationParameters = new TokenValidationParameters
+        {
+          ValidateLifetime = true,
+          ClockSkew = TimeSpan.Zero,
+          ValidateIssuerSigningKey = true,
+          IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.ASCII.GetBytes(token.Secret)),
+          ValidateIssuer = true,
+          ValidateAudience = true
+        };
+      });
+      services.AddMvc()
+     .AddSessionStateTempDataProvider();
+      services.AddSession();
+    }
+
+    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+      if (env.IsDevelopment())
+      {
+        app.UseDeveloperExceptionPage();
+      }
+
+
+      app.UseRouting();
+      app.UseSession();
+      app.UseSpaStaticFiles();
+      app.UseAuthentication();
+      app.UseAuthorization();
+      app.UseEndpoints(endpoints =>
+      {
+        endpoints.MapControllers();
+      });
+
+      app.UseSpa(spa =>
+      {
+        if (env.IsDevelopment())
+          spa.Options.SourcePath = "clientapp";
+        else
+          spa.Options.SourcePath = "clientapp/dist";
+
+        if (env.IsDevelopment())
+        {
+          spa.UseVueCli(npmScript: "serve");
+        }
+
+      });
+    }
+  }
 }
