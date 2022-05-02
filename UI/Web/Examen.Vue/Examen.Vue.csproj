@@ -65,5 +65,11 @@
     <ProjectReference Include="..\..\..\Core\Examen.Core\Examen.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 
 </Project>
