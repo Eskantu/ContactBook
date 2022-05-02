@@ -14,11 +14,11 @@ namespace Examen.Vue
     {
         public static void AddManagers(this IServiceCollection services, IConfiguration configuration)
         {
-#if DEBUG
-            string connectionString = configuration.GetConnectionString("DevlopConnection");
-#else
+//#if DEBUG
+//            string connectionString = configuration.GetConnectionString("DevlopConnection");
+//#else
+//#endif
             string connectionString = configuration.GetConnectionString("ProductionConnection");
-#endif
 
 
             FactoryManager factoryManager = new FactoryManager(connectionString);
