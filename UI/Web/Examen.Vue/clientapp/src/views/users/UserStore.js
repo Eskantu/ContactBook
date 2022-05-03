@@ -15,6 +15,7 @@ const store = {
     },
     mutations: {
         setUserList(state, items) {
+            console.log('setUserList', items)
             state.cargando = false
             state.userList = items
         },
