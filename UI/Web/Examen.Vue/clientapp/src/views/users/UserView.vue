@@ -45,7 +45,7 @@
               v-model="selected"
               dark
               show-select
-              item-key="id"
+              item-key="idUsuario"
               :headers="headers"
               :items="userList"
               :search="_Search"
