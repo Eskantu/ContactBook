@@ -89,6 +89,7 @@
             </v-data-table>
           </v-card-text>
         </v-card>
+        <popup :component="'Forky'" :title="'Forky'"></popup>
       </v-container>
     </v-col>
   </div>
@@ -96,7 +97,9 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
+import popup from "../../components/popup/popup.vue";
 export default {
+  components: {popup},
   data() {
     return {
       selected: [],

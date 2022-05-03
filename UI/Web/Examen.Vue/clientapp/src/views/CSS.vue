@@ -18,7 +18,7 @@
             <v-tab-item v-for="item in titles" :key="item.title">
               <v-card flat>
                 <v-card-text>
-                  <component v-bind:is="item.view"> </component>
+                  <component v-bind:is="item.view"></component>
                 </v-card-text>
               </v-card>
             </v-tab-item>

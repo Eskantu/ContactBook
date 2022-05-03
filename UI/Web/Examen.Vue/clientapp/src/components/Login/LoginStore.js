@@ -14,7 +14,6 @@ const store = {
     },
     actions: {
         ObtenerUsuario({ commit }, credenciales) {
-            console.log(credenciales)
             auth.Login(credenciales).then(res => {
                 StorePrincipal.commit("setUserProfile", res.data)
                 StorePrincipal.commit("SnackStore/SetSnack", "Login correcto")
