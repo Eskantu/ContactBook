@@ -18,6 +18,7 @@
               class="mr-1"
               dark
               color="amber"
+              @click="showEdit=true"
             >
               <v-icon class="mr-3">edit</v-icon>
               Editar</v-btn
@@ -27,6 +28,7 @@
               class=""
               dark
               color="red"
+              @click="showDelete=true"
             >
               <v-icon class="mr-3">delete</v-icon>
               Eliminar</v-btn
@@ -89,7 +91,8 @@
             </v-data-table>
           </v-card-text>
         </v-card>
-        <popup :component="'Forky'" :title="'Forky'"></popup>
+        <popup v-on:close="closeEdit" :show="showEdit" :component="'Forky'" :title="'Forky'"></popup>
+        <popup v-on:close="closeDelete" :show="showDelete" :component="'Project'" :title="'Projects'"></popup>
       </v-container>
     </v-col>
   </div>
@@ -103,6 +106,8 @@ export default {
   data() {
     return {
       selected: [],
+      showEdit:false,
+      showDelete:false
     };
   },
   created() {
@@ -111,6 +116,12 @@ export default {
   },
   methods: {
     ...mapActions("UserStore", ["ObtenerUsuarios", "SetSearch", "SetLoading"]),
+    closeDelete() {
+      this.showDelete = false;
+    },
+    closeEdit() {
+      this.showEdit = false;
+    },
   },
   computed: {
     ...mapState("UserStore", ["headers", "userList", "search", "cargando"]),
