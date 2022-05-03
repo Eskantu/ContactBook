@@ -1,0 +1,104 @@
+# This is a basic workflow to help you get started with Actions
+name: Continuos Deploy
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    tags:
+      - "ContactBook/v*"
+    paths-ignore:
+      - '**/README.md'
+  pull_request:
+    branches: [main]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  DOTNET_VERSION: '3.1.x'
+  AZURE_WEBAPP_NAME: contact-book
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code ✔
+        uses: actions/checkout@v2
+    
+      - name: Setup .NET Core 3.1.x 🛠️
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Start SQL Server 🏁
+        run: |
+          docker run -d --name SQLServer -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Mayito.com.98" -e "MSSQL_PID=Express" -p 1433:1433 -d mcr.microsoft.com/mssql/server:latest 
+
+      - name: Sleep for 5 seconds 😴
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '5s'
+
+      - name: Restore dependencies 📦
+        run: dotnet restore
+
+      - name: Build App 🏗️
+        run: dotnet build -c Release --no-restore
+
+  # test:
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   steps:
+  #     - name: Check out code ✔
+  #       uses: actions/checkout@v2
+    
+  #     - name: Setup .NET Core 3.1.x 🛠️
+  #       uses: actions/setup-dotnet@v1
+  #       with:
+  #         dotnet-version: ${{ env.DOTNET_VERSION }}
+      - name: check SQL Server status ✅
+        run: |
+          docker ps -a
+          docker logs SQLServer
+      - name: Run automated test 🧪
+        env:
+          ConnectionStrings__DefaultConnection: server=localhost,1433;Database=AppDataBase_Test;User=sa;Password=Mayito.com.98
+          #ConnectionStrings__DefaultConnection: Server=localhost;Database=AppDataBase_Test;User Id=sa;Password=qwerty123
+       # run: dotnet test "$GITHUB_WORKSPACE/Test/Examen.Tests" -c Release --no-build
+        run: | 
+          dotnet test --filter "Examen.Tests.UnitTest.EstadoCivilDALTest" -c Release --verbosity m --no-build
+          dotnet test --filter "Examen.Tests.UnitTest.UsuarioDALTest" -c Release --verbosity m --no-build
+          dotnet test --filter "Examen.Tests.UnitTest.TipoContactoDALTest" -c Release --verbosity m --no-build
+          dotnet test --filter "Examen.Tests.UnitTest.ContactoDALTest" -c Release --verbosity m --no-build
+
+  # publish:
+  #   runs-on: ubuntu-latest
+  #   needs: test
+  #   steps:
+      - name: Publish app 📰
+        run: dotnet publish -c Release -o ./out
+
+  # # deploy:
+  # #   runs-on: ubuntu-latest
+  # #   needs: publish
+  # #   steps:
+  #     - name: Deploy to Azure Web App 🚀
+  #       uses: azure/webapps-deploy@v2
+  #       with: 
+  #         app-name: ${{ env.AZURE_WEBAPP_NAME }}
+  #         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_SECRET }}
+  #         package: ./out
+      
+      - name: Deploy to somee Web App 🚀
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: bookVue.somee.com
+#          port: 21
+          username: eskantu
+          password: Mayito.com.98
+        #  log-level: verbose
+          #dry-run: true
+          # dangerous-clean-slate: true
+          local-dir: ./out/
+          server-dir: ./www.bookVue.somee.com/
