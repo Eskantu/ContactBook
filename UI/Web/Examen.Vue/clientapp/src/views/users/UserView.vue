@@ -45,7 +45,7 @@
               v-model="selected"
               dark
               show-select
-              item-key="_id"
+              item-key="id"
               :headers="headers"
               :items="userList"
               :search="_Search"
@@ -59,13 +59,6 @@
                 'show-current-page': true,
               }"
             >
-              <!-- <template v-slot:loading>
-                <v-progress-linear
-                  indeterminate
-                  color="green"
-                ></v-progress-linear>
-                <div>Cargando...</div>
-              </template> -->
               <template v-slot:[`item.isActive`]="{ item }">
                 <tr>
                   <td>
