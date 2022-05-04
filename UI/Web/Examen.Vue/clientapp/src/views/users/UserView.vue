@@ -111,9 +111,9 @@
             <UserForm ref="userform"></UserForm>
           </template>
         </popup>
-        <popup v-on:close="showNew(false)" :show="New" :title="'Nuevo usuario'">
+        <popup v-on:close="showNew(false)" v-on:success="guardar('nuevo')" :show="New" :title="'Nuevo usuario'">
           <template v-slot:body>
-            <UserForm ref="userform"></UserForm>
+            <UserForm ref="userformNew"></UserForm>
           </template>
         </popup>
       </v-container>
@@ -147,7 +147,12 @@ export default {
       "showDelete",
       "success",
       "cancel",
+      "guardarUser"
     ]),
+    ...mapState("UsuarioFormStore",["SetUsuario"]),
+    guardar(action) {
+      this.guardarUser({form: this.$refs.userformNew, action:action})
+    },
   },
   computed: {
     ...mapState("UserStore", ["headers", "userList", "search", "cargando"]),

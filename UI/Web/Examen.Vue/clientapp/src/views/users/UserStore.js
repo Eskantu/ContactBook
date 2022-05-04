@@ -57,6 +57,12 @@ const store = {
         cancel({ commit }, value) {
             if(value==='edit')  commit('setShowEdit', false)
             console.log('cancel', value)
+        },
+        guardarUser({ commit }, object) {
+            console.log(object)
+           if (object.form.submitform(object.action)) {
+               commit('setShowNew', false)
+           }
         }
     }
 

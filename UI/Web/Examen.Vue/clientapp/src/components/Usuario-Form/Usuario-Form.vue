@@ -86,9 +86,19 @@ export default {
   },
   methods: {
     ...mapActions("UsuarioFormStore", ["ObtenerUsuario", "CrearUsuario"]),
-    submitform() {
+    submitform(action) {
+      console.log(action);
       if (this.$refs.form.validate()) {
-        this.CrearUsuario(this.usuario);
+        if (action === "nuevo") {
+          this.CrearUsuario(this.usuario);
+          return true;
+        } 
+        // else {
+        //   this.actualizarUsuario(this.usuario);
+        // }
+      }
+      else{
+        return false
       }
     },
   },

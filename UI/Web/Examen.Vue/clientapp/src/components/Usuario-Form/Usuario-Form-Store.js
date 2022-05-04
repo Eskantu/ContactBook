@@ -6,6 +6,7 @@ const store = {
     state: { usuario: {}, error: '' },
     mutations: {
         SetUsuario(state, usuario) {
+            console.log('SetUsuario', usuario)
             state.usuario = usuario
         },
         cleanUser(state) {
