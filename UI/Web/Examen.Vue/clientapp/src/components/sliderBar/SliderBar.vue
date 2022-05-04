@@ -95,7 +95,7 @@ export default {
 </script>
 
 
-<style lang="scss" scoped>
+<style lang="scss">
 // .v-navigation-drawer:hover {
 //   .ocular {
 //     opacity: 1;

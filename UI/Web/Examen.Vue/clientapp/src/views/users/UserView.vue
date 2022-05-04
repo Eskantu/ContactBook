@@ -91,9 +91,15 @@
             </v-data-table>
           </v-card-text>
         </v-card>
-        <popup v-on:success="success('edit')" v-on:cancel="cancel('edit')" v-on:close="showEdit(false)" :show="Edit" :title="'Editar usuario'">
+        <popup
+          v-on:success="success('edit')"
+          v-on:cancel="cancel('edit')"
+          v-on:close="showEdit(false)"
+          :show="Edit"
+          :title="'Editar usuario'"
+        >
           <template v-slot:body>
-            <Forky></Forky>
+            <UserForm ref="userform"></UserForm>
           </template>
         </popup>
         <popup
@@ -102,10 +108,13 @@
           :title="'Projects'"
         >
           <template v-slot:body>
-            <Project></Project>
+            <UserForm ref="userform"></UserForm>
           </template>
         </popup>
-        <popup v-on:close="showNew(false)" :show="New" :title="'Projects'">
+        <popup v-on:close="showNew(false)" :show="New" :title="'Nuevo usuario'">
+          <template v-slot:body>
+            <UserForm ref="userform"></UserForm>
+          </template>
         </popup>
       </v-container>
     </v-col>
@@ -115,10 +124,9 @@
 <script>
 import { mapActions, mapState } from "vuex";
 import popup from "../../components/popup/popup.vue";
-import Forky from "../../components/Forky.vue";
-import Project from "../../components/Project/Project.vue";
+import UserForm from "../../components/Usuario-Form/Usuario-Form.vue";
 export default {
-  components: { popup, Forky, Project },
+  components: { popup, UserForm },
 
   data() {
     return {
@@ -138,7 +146,7 @@ export default {
       "showEdit",
       "showDelete",
       "success",
-      "cancel"
+      "cancel",
     ]),
   },
   computed: {

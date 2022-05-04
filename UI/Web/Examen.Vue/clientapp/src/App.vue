@@ -31,3 +31,19 @@ export default {
   },
 };
 </script>
+
+<style>
+html {
+  overflow: hidden !important;
+}
+
+.v-card {
+  display: flex !important;
+  flex-direction: column;
+}
+
+.v-card__text {
+  flex-grow: 1;
+  overflow: auto;
+}
+</style>

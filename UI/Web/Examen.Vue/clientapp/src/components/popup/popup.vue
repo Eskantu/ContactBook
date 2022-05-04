@@ -50,7 +50,6 @@ export default {
     success() {
       this.$emit("success");
     },
-
   },
 };
 </script>
