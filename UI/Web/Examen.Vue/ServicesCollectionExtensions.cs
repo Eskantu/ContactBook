@@ -14,7 +14,6 @@ namespace Examen.Vue
   {
     public static void AddManagers(this IServiceCollection services, IConfiguration configuration, string connectionString)
     {
-
       FactoryManager factoryManager = new FactoryManager(connectionString);
       services.AddSingleton<IContactoManager>(x => factoryManager.GetContactoManager());
       services.AddSingleton<ITipoContactoManager>(x => factoryManager.GetTipoContactoManager());

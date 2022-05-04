@@ -9,7 +9,7 @@
           class="text-md-center elecation-3"
         >
           <v-card-title>
-            <v-btn class="mr-1" dark color="teal">
+            <v-btn @click="showNew(true)" class="mr-1" dark color="teal">
               <v-icon class="mr-3">add_circle</v-icon>
               Nuevo</v-btn
             >
@@ -18,7 +18,7 @@
               class="mr-1"
               dark
               color="amber"
-              @click="showEdit=true"
+              @click="showEdit(true)"
             >
               <v-icon class="mr-3">edit</v-icon>
               Editar</v-btn
@@ -28,7 +28,7 @@
               class=""
               dark
               color="red"
-              @click="showDelete=true"
+              @click="showDelete(true)"
             >
               <v-icon class="mr-3">delete</v-icon>
               Eliminar</v-btn
@@ -91,8 +91,22 @@
             </v-data-table>
           </v-card-text>
         </v-card>
-        <popup v-on:close="closeEdit" :show="showEdit" :component="'Forky'" :title="'Forky'"></popup>
-        <popup v-on:close="closeDelete" :show="showDelete" :component="'Project'" :title="'Projects'"></popup>
+        <popup v-on:success="success('edit')" v-on:cancel="cancel('edit')" v-on:close="showEdit(false)" :show="Edit" :title="'Editar usuario'">
+          <template v-slot:body>
+            <Forky></Forky>
+          </template>
+        </popup>
+        <popup
+          v-on:close="showDelete(false)"
+          :show="Delete"
+          :title="'Projects'"
+        >
+          <template v-slot:body>
+            <Project></Project>
+          </template>
+        </popup>
+        <popup v-on:close="showNew(false)" :show="New" :title="'Projects'">
+        </popup>
       </v-container>
     </v-col>
   </div>
@@ -101,13 +115,14 @@
 <script>
 import { mapActions, mapState } from "vuex";
 import popup from "../../components/popup/popup.vue";
+import Forky from "../../components/Forky.vue";
+import Project from "../../components/Project/Project.vue";
 export default {
-  components: {popup},
+  components: { popup, Forky, Project },
+
   data() {
     return {
       selected: [],
-      showEdit:false,
-      showDelete:false
     };
   },
   created() {
@@ -115,16 +130,24 @@ export default {
     this.ObtenerUsuarios();
   },
   methods: {
-    ...mapActions("UserStore", ["ObtenerUsuarios", "SetSearch", "SetLoading"]),
-    closeDelete() {
-      this.showDelete = false;
-    },
-    closeEdit() {
-      this.showEdit = false;
-    },
+    ...mapActions("UserStore", [
+      "ObtenerUsuarios",
+      "SetSearch",
+      "SetLoading",
+      "showNew",
+      "showEdit",
+      "showDelete",
+      "success",
+      "cancel"
+    ]),
   },
   computed: {
     ...mapState("UserStore", ["headers", "userList", "search", "cargando"]),
+    ...mapState("UserStore", {
+      Edit: (state) => state.Edit,
+      Delete: (state) => state.Delete,
+      New: (state) => state.New,
+    }),
     _Search: {
       get() {
         return this.search;

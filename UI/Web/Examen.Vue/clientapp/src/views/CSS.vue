@@ -31,7 +31,7 @@
 
 <script>
 import Forky from "../components/Forky.vue";
-import Registro from "../components/Registro/Registro.vue";
+import Registro from "../components/Usuario-Form/Usuario-Form.vue";
 import Proyectos from "../components/Project/Project.vue";
 export default {
   name: "CSS",

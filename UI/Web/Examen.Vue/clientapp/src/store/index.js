@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import RegistroStore from "../components/Registro/RegistroStore";
+import UsuarioFormStore from "../components/Usuario-Form/Usuario-Form-Store";
 import LoginStore from '../components/Login/LoginStore'
 import SnackStore from '../components/Snackbar/SnackStore'
 import NewStore from '../views/New/viewStore'
@@ -35,5 +35,5 @@ export default new Vuex.Store({
       return state.user !== null
     },
   },
-  modules: {AppBarStore, RegistroStore, SnackStore, LoginStore, NewStore, UserStore, UploadStore, SlideBarStore },
+  modules: {AppBarStore, UsuarioFormStore, SnackStore, LoginStore, NewStore, UserStore, UploadStore, SlideBarStore },
 });

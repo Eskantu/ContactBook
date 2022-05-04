@@ -68,7 +68,6 @@ export default {
   methods: {
     ...mapActions("LoginStore", ["ObtenerUsuario", "setLoading"]),
     Login() {
-      console.log({Password: this.credenciales.Password, UserName: this.credenciales.UserName});
       this.ObtenerUsuario({Password: this.credenciales.Password, UserName: this.credenciales.UserName});
     },
   },

@@ -16,22 +16,25 @@
           </v-row>
         </v-container>
       </v-toolbar>
-      <v-card-text>
-        <component v-bind:is="component"></component>
+      <v-card-text class="mt-5">
+        <slot name="body"></slot>
       </v-card-text>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn @click="cancel" color="error">{{ cancelText }}</v-btn>
+        <v-btn @click="success" color="success">{{ successText }}</v-btn>
+      </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
 
 <script>
-import Forky from "../Forky.vue";
-import Project from "../Project/Project.vue";
 export default {
   name: "popup",
-  components: { Forky,Project },
   props: {
-    title: { type: String},
-    component: { type: String},
+    title: { type: String },
+    successText: { type: String, default: "Guardar" },
+    cancelText: { type: String, default: "Cancelar" },
     show: { type: Boolean, default: false },
   },
   data() {
@@ -41,6 +44,13 @@ export default {
     close() {
       this.$emit("close");
     },
+    cancel() {
+      this.$emit("cancel");
+    },
+    success() {
+      this.$emit("success");
+    },
+
   },
 };
 </script>
