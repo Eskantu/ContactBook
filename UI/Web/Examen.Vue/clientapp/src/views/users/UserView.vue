@@ -18,7 +18,7 @@
               class="mr-1"
               dark
               color="amber"
-              @click="showEdit(true)"
+              @click="showEdit({show:true, usuario: selected[0]})"
             >
               <v-icon class="mr-3">edit</v-icon>
               Editar</v-btn
@@ -92,14 +92,14 @@
           </v-card-text>
         </v-card>
         <popup
-          v-on:success="success('edit')"
+          v-on:success="guardar('editar')"
           v-on:cancel="cancel('edit')"
-          v-on:close="showEdit(false)"
+          v-on:close="showEdit({show:false, usuario: {}})"
           :show="Edit"
           :title="'Editar usuario'"
         >
           <template v-slot:body>
-            <UserForm ref="userform"></UserForm>
+            <UserForm :action="'editar'" ref="userformEdit"></UserForm>
           </template>
         </popup>
         <popup
@@ -113,7 +113,7 @@
         </popup>
         <popup v-on:close="showNew(false)" v-on:success="guardar('nuevo')" :show="New" :title="'Nuevo usuario'">
           <template v-slot:body>
-            <UserForm ref="userformNew"></UserForm>
+            <UserForm :action="'nuevo'" ref="userformNew"></UserForm>
           </template>
         </popup>
       </v-container>
@@ -151,7 +151,12 @@ export default {
     ]),
     ...mapState("UsuarioFormStore",["SetUsuario"]),
     guardar(action) {
-      this.guardarUser({form: this.$refs.userformNew, action:action})
+      if (action == "nuevo") {
+        this.guardarUser({form: this.$refs.userformNew, action:action})
+      }
+      else if (action == "editar") {
+        this.guardarUser({form: this.$refs.userformEdit, action:action})
+      }
     },
   },
   computed: {

@@ -31,7 +31,7 @@
     </v-row>
     <v-text-field
       :rules="rules.required"
-      v-model="usuario.username"
+      v-model="usuario.userName"
       label="username"
       type="text"
     ></v-text-field>
@@ -48,7 +48,8 @@
       type="password"
     ></v-text-field>
     <v-text-field
-      :rules="[...rules.required, ...rules.same]"
+    v-if="action == 'nuevo'"
+      :rules="action=='nuevo'?[...rules.required, ...rules.same]:[]"
       label="repeat password"
       type="password"
     ></v-text-field>
@@ -59,6 +60,11 @@
 import { mapActions, mapState } from "vuex";
 export default {
   name: "Usuario-Form",
+  props: {
+    action: {
+      type: String, default:'nuevo'
+    },
+  },
   data() {
     return {
       snackbar: true,
@@ -92,13 +98,14 @@ export default {
         if (action === "nuevo") {
           this.CrearUsuario(this.usuario);
           return true;
-        } 
-        // else {
-        //   this.actualizarUsuario(this.usuario);
-        // }
-      }
-      else{
-        return false
+        }
+        if (action === "editar") {
+          // this.ObtenerUsuario(this.usuario.id);
+          console.log("editar usuario");
+          return true;
+        }
+      } else {
+        return false;
       }
     },
   },

@@ -21,7 +21,6 @@ const store = {
             }).catch((error) => {
                 StorePrincipal.commit('SnackStore/SetSnack', 'Error al crear usuario,'+error.response.data)
             })
-
         },
     },
 };

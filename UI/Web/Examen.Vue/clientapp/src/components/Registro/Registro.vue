@@ -6,7 +6,7 @@
           <v-toolbar-title><h3>SIGN IN</h3></v-toolbar-title>
         </v-toolbar>
         <v-card-text>
-          <UserForm ref="userform"></UserForm>
+          <UserForm :action="'nuevo'" ref="userform"></UserForm>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn @click="Submit" color="success">Sign in</v-btn>

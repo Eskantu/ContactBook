@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import Mainstore from '../../store'
 const store = {
     namespaced: true,
     state: {
@@ -45,14 +45,11 @@ const store = {
             commit('setShowDelete', value)
         },
         showEdit({ commit }, value) {
-            commit('setShowEdit', value)
+           Mainstore.commit('UsuarioFormStore/SetUsuario', value.usuario)
+             commit('setShowEdit', value.show)
         },
         showNew({ commit }, value) {
             commit('setShowNew', value)
-        },
-        success({ commit }, value) {
-        if(value==='edit')  commit('setShowEdit', false)
-         console.log('success', value)
         },
         cancel({ commit }, value) {
             if(value==='edit')  commit('setShowEdit', false)
