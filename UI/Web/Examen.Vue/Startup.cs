@@ -81,25 +81,17 @@ namespace Examen.Vue
 
     var contact = new OpenApiContact()
     {
-        Name = "FirstName LastName",
-        Email = "user@example.com",
-        Url = new Uri("http://www.example.com")
-    };
-
-    var license = new OpenApiLicense()
-    {
-        Name = "My License",
-        Url = new Uri("http://www.example.com")
+        Name = "Mario Escalante",
+        Email = "marioescalante3@gmail.com",
+        Url = new Uri("mailto:marioescalante3@gmail.com")
     };
 
     var info = new OpenApiInfo()
     {
         Version = "v1",
-        Title = "Swagger Demo API",
-        Description = "Swagger Demo API Description",
-        TermsOfService = new Uri("http://www.example.com"),
+        Title = "ContactBook API",
+        Description = "API que da acceso a los datos de la agenda y otros servicios",
         Contact = contact,
-        License = license
     };
 
       services.AddSwaggerGen(c =>
