@@ -54,7 +54,7 @@ namespace Examen.Vue.Controllers
     }
 
     // PUT: api/Usuario/5
-    [HttpPut("{id}")]
+    [HttpPut]
     public IActionResult Put([FromBody] Usuario value) => Ok(_usuarioManager.Actualizar(new SpParametros("SpUsuario", new List<KeyValuePair<string, object>>
         {
             new KeyValuePair<string, object>("@Opcion",2),
@@ -66,7 +66,7 @@ namespace Examen.Vue.Controllers
             new KeyValuePair<string, object>("@Email",value.Email),
             new KeyValuePair<string, object>("@CreadoPor",value.CreadoPor),
             new KeyValuePair<string, object>("@IsActive",value.IsActive),
-            new KeyValuePair<string, object>("@Modulos",value.Modulos),
+            new KeyValuePair<string, object>("@Modulos",string.IsNullOrEmpty( value.Modulos)?"":value.Modulos),
             new KeyValuePair<string, object>("@IdUsuario",value.IdUsuario),
         })));
 
