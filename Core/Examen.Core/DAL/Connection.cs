@@ -50,6 +50,7 @@ namespace Examen.Core.DAL
             try
             {
                 SqlCommand command = new SqlCommand(query, sqlConnection);
+                command.CommandTimeout=60;
                 return command.ExecuteNonQuery();
             }
             catch (Exception ex)
