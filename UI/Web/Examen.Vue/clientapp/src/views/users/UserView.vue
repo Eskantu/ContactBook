@@ -28,7 +28,7 @@
               class=""
               dark
               color="red"
-              @click="showDelete(true)"
+              @click="eliminarUsuario(selected[0])"
             >
               <v-icon class="mr-3">delete</v-icon>
               Eliminar</v-btn
@@ -102,7 +102,7 @@
             <UserForm :action="'editar'" ref="userformEdit"></UserForm>
           </template>
         </popup>
-        <popup
+        <!-- <popup
           v-on:close="showDelete(false)"
           :show="Delete"
           :title="'Projects'"
@@ -110,7 +110,7 @@
           <template v-slot:body>
             <UserForm ref="userform"></UserForm>
           </template>
-        </popup>
+        </popup> -->
         <popup v-on:close="showNew(false)" v-on:success="guardar('nuevo')" :show="New" :title="'Nuevo usuario'">
           <template v-slot:body>
             <UserForm :action="'nuevo'" ref="userformNew"></UserForm>
@@ -147,7 +147,8 @@ export default {
       "showDelete",
       "success",
       "cancel",
-      "guardarUser"
+      "guardarUser",
+      "eliminarUsuario",
     ]),
     ...mapState("UsuarioFormStore",["SetUsuario"]),
     guardar(action) {

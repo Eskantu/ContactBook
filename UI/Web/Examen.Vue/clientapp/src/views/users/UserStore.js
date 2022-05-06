@@ -57,11 +57,18 @@ const store = {
         },
         guardarUser({ commit, dispatch, state }, object) {
             if (object.form.submitform(object.action)) {
-                state.userSelect=[]
+                state.userSelect = []
                 commit('setShowNew', false)
                 commit('setShowEdit', false)
             }
             dispatch('ObtenerUsuarios')
+        },
+        eliminarUsuario({ commit, dispatch, state }, usuario) {
+            console.log('eliminarUsuario', usuario)
+            axios.delete('/Usuario/' + usuario.idUsuario).then(res => {
+                state.userSelect = []
+                dispatch('ObtenerUsuarios')
+            }).catch(e => console.log(e.response))
         }
     }
 
