@@ -53,6 +53,13 @@
       label="repeat password"
       type="password"
     ></v-text-field>
+    <v-switch
+      v-if="showIsActive"
+      :color="`${usuario.isActive ? 'success' : 'red'}`"
+      v-model="usuario.isActive"
+      inset
+      :label="`Usuario ${usuario.isActive ? 'Activo' : 'Inactivo'}`"
+    ></v-switch>
   </v-form>
 </template>
 
@@ -65,6 +72,7 @@ export default {
       type: String,
       default: "nuevo",
     },
+    showIsActive: { type: Boolean, default: false },
   },
   data() {
     return {
@@ -99,6 +107,7 @@ export default {
     ]),
     submitform() {
       if (this.$refs.form.validate()) {
+        this.usuario.isActive=this.usuario.isActive?1:0;
         if (this.action === "nuevo") {
           this.CrearUsuario(this.usuario);
           return true;

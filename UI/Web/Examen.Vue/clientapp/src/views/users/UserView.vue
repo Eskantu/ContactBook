@@ -99,7 +99,7 @@
           :title="'Editar usuario'"
         >
           <template v-slot:body>
-            <UserForm :action="'editar'" ref="userformEdit"></UserForm>
+            <UserForm :showIsActive="true" :action="'editar'" ref="userformEdit"></UserForm>
           </template>
         </popup>
         <!-- <popup
@@ -113,7 +113,7 @@
         </popup> -->
         <popup v-on:close="showNew(false)" v-on:success="guardar('nuevo')" v-on:cancel="showNew(false)"  :show="New" :title="'Nuevo usuario'">
           <template v-slot:body>
-            <UserForm :action="'nuevo'" ref="userformNew"></UserForm>
+            <UserForm :showIsActive="true" :action="'nuevo'" ref="userformNew"></UserForm>
           </template>
         </popup>
       </v-container>
@@ -158,6 +158,7 @@ export default {
       else if (action == "editar") {
         this.guardarUser({form: this.$refs.userformEdit, action:action})
       }
+      this.selected=[]
     },
   },
   computed: {
