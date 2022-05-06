@@ -48,8 +48,8 @@
       type="password"
     ></v-text-field>
     <v-text-field
-    v-if="action == 'nuevo'"
-      :rules="action=='nuevo'?[...rules.required, ...rules.same]:[]"
+      v-if="action == 'nuevo'"
+      :rules="action == 'nuevo' ? [...rules.required, ...rules.same] : []"
       label="repeat password"
       type="password"
     ></v-text-field>
@@ -62,7 +62,8 @@ export default {
   name: "Usuario-Form",
   props: {
     action: {
-      type: String, default:'nuevo'
+      type: String,
+      default: "nuevo",
     },
   },
   data() {
@@ -91,17 +92,19 @@ export default {
     };
   },
   methods: {
-    ...mapActions("UsuarioFormStore", ["ObtenerUsuario", "CrearUsuario"]),
-    submitform(action) {
-      console.log(action);
+    ...mapActions("UsuarioFormStore", [
+      "ObtenerUsuario",
+      "CrearUsuario",
+      "EditarUsuario",
+    ]),
+    submitform() {
       if (this.$refs.form.validate()) {
-        if (action === "nuevo") {
+        if (this.action === "nuevo") {
           this.CrearUsuario(this.usuario);
           return true;
         }
-        if (action === "editar") {
-          // this.ObtenerUsuario(this.usuario.id);
-          console.log("editar usuario");
+        if (this.action === "editar") {
+          this.EditarUsuario(this.usuario);
           return true;
         }
       } else {

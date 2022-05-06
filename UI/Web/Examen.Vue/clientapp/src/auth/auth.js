@@ -3,7 +3,9 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 async function register(usuario) {
     return axios.post('/Usuario', usuario)
-
+}
+function ActualizarUsuario(usuario) {
+    return axios.put('/Usuario', usuario)
 }
 function Login(credenciales) {
     return axios.post("Authentication/RequestToken", credenciales)
@@ -18,6 +20,6 @@ function deleteUserLogged() {
     Cookies.remove('token');
 }
 export default {
-    register, Login, setUserLogged, getUserLogged, deleteUserLogged
+    register, Login, setUserLogged, getUserLogged, deleteUserLogged, ActualizarUsuario
 }
 

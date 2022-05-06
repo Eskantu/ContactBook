@@ -22,6 +22,15 @@ const store = {
                 StorePrincipal.commit('SnackStore/SetSnack', 'Error al crear usuario,'+error.response.data)
             })
         },
+        EditarUsuario({ commit }, usuario) {
+            console.log('EditarUsuario', usuario)
+            auth.ActualizarUsuario(usuario).then(res => {
+                StorePrincipal.commit('SnackStore/SetSnack', 'Code:' + res.status + ' Usuario actualizado')
+                commit('cleanUser');
+            }).catch((error) => {
+                StorePrincipal.commit('SnackStore/SetSnack', 'Error al actualizar usuario,' + error.response.data)
+            })
+        }
     },
 };
 export default store;

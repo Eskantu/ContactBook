@@ -45,21 +45,23 @@ const store = {
             commit('setShowDelete', value)
         },
         showEdit({ commit }, value) {
-           Mainstore.commit('UsuarioFormStore/SetUsuario', value.usuario)
-             commit('setShowEdit', value.show)
+            Mainstore.commit('UsuarioFormStore/SetUsuario', value.usuario)
+            commit('setShowEdit', value.show)
         },
         showNew({ commit }, value) {
             commit('setShowNew', value)
         },
         cancel({ commit }, value) {
-            if(value==='edit')  commit('setShowEdit', false)
+            if (value === 'edit') commit('setShowEdit', false)
             console.log('cancel', value)
         },
-        guardarUser({ commit }, object) {
-            console.log(object)
-           if (object.form.submitform(object.action)) {
-               commit('setShowNew', false)
-           }
+        guardarUser({ commit, dispatch, state }, object) {
+            if (object.form.submitform(object.action)) {
+                state.userSelect=[]
+                commit('setShowNew', false)
+                commit('setShowEdit', false)
+            }
+            dispatch('ObtenerUsuarios')
         }
     }
 
