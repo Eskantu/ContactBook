@@ -93,7 +93,7 @@
         </v-card>
         <popup
           v-on:success="guardar('editar')"
-          v-on:cancel="cancel('edit')"
+          v-on:cancel="showEdit({show:false, usuario: {}})"
           v-on:close="showEdit({show:false, usuario: {}})"
           :show="Edit"
           :title="'Editar usuario'"
@@ -111,7 +111,7 @@
             <UserForm ref="userform"></UserForm>
           </template>
         </popup> -->
-        <popup v-on:close="showNew(false)" v-on:success="guardar('nuevo')" :show="New" :title="'Nuevo usuario'">
+        <popup v-on:close="showNew(false)" v-on:success="guardar('nuevo')" v-on:cancel="showNew(false)"  :show="New" :title="'Nuevo usuario'">
           <template v-slot:body>
             <UserForm :action="'nuevo'" ref="userformNew"></UserForm>
           </template>
