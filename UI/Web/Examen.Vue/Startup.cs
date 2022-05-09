@@ -79,24 +79,44 @@ namespace Examen.Vue
      .AddSessionStateTempDataProvider();
       services.AddSession();
 
-    var contact = new OpenApiContact()
-    {
+      var contact = new OpenApiContact()
+      {
         Name = "Mario Escalante",
         Email = "marioescalante3@gmail.com",
         Url = new Uri("mailto:marioescalante3@gmail.com")
-    };
+      };
 
-    var info = new OpenApiInfo()
-    {
+      var info = new OpenApiInfo()
+      {
         Version = "v1",
         Title = "ContactBook API",
         Description = "API que da acceso a los datos de la agenda y otros servicios",
         Contact = contact,
-    };
+      };
 
       services.AddSwaggerGen(c =>
       {
         c.SwaggerDoc("v1", info);
+        c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+        {
+          In = ParameterLocation.Header,
+          Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}",
+          Name = "Authorization",
+          Type = SecuritySchemeType.ApiKey
+        });
+        c.AddSecurityRequirement(new OpenApiSecurityRequirement {
+        {
+          new OpenApiSecurityScheme
+          {
+            Reference = new OpenApiReference
+            {
+              Type = ReferenceType.SecurityScheme,
+              Id = "Bearer"
+            }
+           },
+           new string[] { }
+         }
+        });
       });
     }
 

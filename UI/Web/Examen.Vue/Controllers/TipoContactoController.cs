@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Examen.Core.COMMON.Interfaces;
 using Examen.Core.COMMON.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +13,7 @@ namespace Examen.Vue.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class TipoContactoController : ControllerBase
     {
         private readonly ITipoContactoManager _tipoContactoManager;

@@ -7,12 +7,13 @@ using Microsoft.Extensions.Logging;
 using Examen.Core.COMMON.Interfaces;
 using Examen.Core.COMMON.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Examen.Vue.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
