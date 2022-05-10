@@ -23,7 +23,7 @@ namespace Examen.Vue
       IConfigurationRoot configuration = new ConfigurationBuilder()
       .AddJsonFile("appsettings.json", false, true)
       .Build();
-      #if DEBUG
+#if DEBUG
       string connectionString = configuration.GetConnectionString("DevlopConnection");
 #else
       string connectionString = configuration.GetConnectionString("ProductionConnection");
@@ -32,7 +32,7 @@ namespace Examen.Vue
       Log.Logger = new LoggerConfiguration()
       .WriteTo.
       MSSqlServer(connectionString, "Logs", autoCreateSqlTable: true, 
-      restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Verbose)
+      restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Information)
       .CreateLogger();
 
 
