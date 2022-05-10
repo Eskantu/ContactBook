@@ -1,6 +1,6 @@
  import StorePrincipal from '../../store/index'
-
  import auth from '../../auth/auth'
+import Usuario from '../../API/Usuario';
 const store = {
     namespaced: true,
     state: { usuario: {}, error: '' },
@@ -24,7 +24,7 @@ const store = {
         },
         EditarUsuario({ commit }, usuario) {
             console.log('EditarUsuario', usuario)
-            auth.ActualizarUsuario(usuario).then(res => {
+            Usuario.Actualizar(usuario).then(res => {
                 StorePrincipal.commit('SnackStore/SetSnack', 'Code:' + res.status + ' Usuario actualizado')
                 commit('cleanUser');
             }).catch((error) => {

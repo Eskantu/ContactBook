@@ -1,5 +1,5 @@
-import axios from 'axios'
 import Mainstore from '../../store'
+import Usuario from '../../API/Usuario'
 const store = {
     namespaced: true,
     state: {
@@ -33,7 +33,7 @@ const store = {
     },
     actions: {
         ObtenerUsuarios({ commit }) {
-            axios.get('/Usuario').then(res => commit("setUserList", res.data)).catch(e => console.log(e.response))
+            Usuario.Obtener().then(res => commit("setUserList", res.data)).catch(e => console.log(e.response))
         },
         SetSearch({ state }, search) {
             state.search = search
@@ -65,7 +65,7 @@ const store = {
         },
         eliminarUsuario({ commit, dispatch, state }, usuario) {
             console.log('eliminarUsuario', usuario)
-            axios.delete('/Usuario/' + usuario.idUsuario).then(res => {
+            Usuario.Eliminar(usuario.idUsuario).then(res => {
                 state.userSelect = []
                 dispatch('ObtenerUsuarios')
             }).catch(e => console.log(e.response))
