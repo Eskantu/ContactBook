@@ -13,7 +13,7 @@ namespace Examen.Vue.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
