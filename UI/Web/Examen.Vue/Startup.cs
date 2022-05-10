@@ -67,10 +67,12 @@ namespace Examen.Vue
         x.SaveToken = true;
         x.TokenValidationParameters = new TokenValidationParameters
         {
-          ValidateLifetime = true,
-          ClockSkew = TimeSpan.Zero,
+          //ValidateLifetime = true,
+          //ClockSkew = TimeSpan.Zero,
           ValidateIssuerSigningKey = true,
           IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.ASCII.GetBytes(token.Secret)),
+          ValidIssuer=token.Issuer,
+          ValidAudience=token.Audience,
           ValidateIssuer = true,
           ValidateAudience = true
         };
