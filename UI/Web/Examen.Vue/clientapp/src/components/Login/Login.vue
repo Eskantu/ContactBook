@@ -8,6 +8,7 @@
         <v-card-text>
           <v-form v-model="valid">
             <v-text-field
+              v-on:keyup.enter="Login"
               :disabled="_loading"
               :rules="userRules"
               v-model="credenciales.UserName"
@@ -16,6 +17,7 @@
               type="text"
             ></v-text-field>
             <v-text-field
+              v-on:keyup.enter="Login"
               :disabled="_loading"
               :rules="passwordRules"
               v-model="credenciales.Password"
@@ -55,7 +57,10 @@ export default {
     };
   },
   computed: {
-    ...mapState("LoginStore", {credenciales:"credenciales", cargando: "cargando"}),
+    ...mapState("LoginStore", {
+      credenciales: "credenciales",
+      cargando: "cargando",
+    }),
     _loading: {
       get() {
         return this.cargando;
@@ -68,7 +73,10 @@ export default {
   methods: {
     ...mapActions("LoginStore", ["ObtenerUsuario", "setLoading"]),
     Login() {
-      this.ObtenerUsuario({Password: this.credenciales.Password, UserName: this.credenciales.UserName});
+      this.ObtenerUsuario({
+        Password: this.credenciales.Password,
+        UserName: this.credenciales.UserName,
+      });
     },
   },
 };
