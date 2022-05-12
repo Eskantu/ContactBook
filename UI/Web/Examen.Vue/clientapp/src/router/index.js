@@ -69,6 +69,13 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/uploadFile/uploadFile.vue"),
     meta: { requiresAuth: true }
   },
+  {
+    path: "/TipoContacto",
+    name: "TipoContacto",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/TipoContacto/TipoContacto.vue"),
+    meta: { requiresAuth: true }
+  },
 ];
 
 const router = new VueRouter({

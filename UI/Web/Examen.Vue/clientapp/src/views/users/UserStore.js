@@ -33,7 +33,10 @@ const store = {
     },
     actions: {
         ObtenerUsuarios({ commit }) {
-            Usuario.Obtener().then(res => commit("setUserList", res.data)).catch(e => console.log(e.response))
+            Usuario.Obtener().then(res => commit("setUserList", res.data)).catch(e => {
+                console.log(e.response)
+                 Mainstore.commit("SnackStore/SetSnack", e.status)
+            })
         },
         SetSearch({ state }, search) {
             state.search = search
@@ -64,7 +67,6 @@ const store = {
             dispatch('ObtenerUsuarios')
         },
         eliminarUsuario({ commit, dispatch, state }, usuario) {
-            console.log('eliminarUsuario', usuario)
             Usuario.Eliminar(usuario.idUsuario).then(res => {
                 state.userSelect = []
                 dispatch('ObtenerUsuarios')

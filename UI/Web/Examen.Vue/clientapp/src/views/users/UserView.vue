@@ -1,108 +1,85 @@
 <template>
   <div class="jumbotron-eskantu" fluid fill-height>
-    <v-col>
-      <v-container>
-        <v-card
-          color="transparent"
-          offset-md="2"
-          md="2"
-          class="text-md-center elecation-3"
-        >
-          <v-card-title>
-            <v-btn @click="showNew(true)" class="mr-1" dark color="teal">
-              <v-icon class="mr-3">add_circle</v-icon>
-              Nuevo</v-btn
-            >
-            <v-btn
-              :disabled="DisabledButtonEditDelete.edit"
-              class="mr-1"
-              dark
-              color="amber"
-              @click="showEdit({show:true, usuario: selected[0]})"
-            >
-              <v-icon class="mr-3">edit</v-icon>
-              Editar</v-btn
-            >
-            <v-btn
-              :disabled="DisabledButtonEditDelete.delete"
-              class=""
-              dark
-              color="red"
-              @click="eliminarUsuario(selected[0])"
-            >
-              <v-icon class="mr-3">delete</v-icon>
-              Eliminar</v-btn
-            >
-            <v-spacer></v-spacer>
-            <v-text-field
-              v-model="_Search"
-              label="buscar"
-              single-line
-              color="black"
-              hide-details
-            ></v-text-field>
-          </v-card-title>
-          <v-card-text>
-            <v-data-table
-              v-model="selected"
-              dark
-              show-select
-              item-key="idUsuario"
-              :headers="headers"
-              :items="userList"
-              :search="_Search"
-              :loading="_cargando"
-              class="elevation-1"
-              loading-text="Cargando... por favor espere"
-              :footer-props="{
-                'items-per-page': 5,
-                'items-per-page-text': 'Registros por pagina',
-                'items-per-page-all-text': 'Todos',
-                'show-current-page': true,
-              }"
-            >
-              <template v-slot:[`item.isActive`]="{ item }">
-                <tr>
-                  <td>
-                    <v-icon v-if="item.isActive" color="success">done</v-icon>
-                    <v-icon v-else color="error">close</v-icon>
-                  </td>
-                </tr>
-              </template>
-              <template v-slot:[`item.nombre`]="{ item }">
-                <tr>
-                  <td>
-                    {{ item.nombre }} {{ item.apellidoPaterno }}
-                    {{ item.apellidoMaterno }}
-                    <br />
-                    <div class="text-md-caption blue-grey--text">
-                      {{ item.userName }}
-                    </div>
-                  </td>
-                </tr>
-              </template>
-              <template v-slot:[`item.fechaCreacion`]="{ item }">
-                <tr>
-                  <td>
-                    {{ item.fechaCreacion | formatDate }}
-                  </td>
-                </tr>
-              </template>
-            </v-data-table>
-          </v-card-text>
-        </v-card>
-        <popup
-          v-on:success="guardar('editar')"
-          v-on:cancel="showEdit({show:false, usuario: {}})"
-          v-on:close="showEdit({show:false, usuario: {}})"
-          :show="Edit"
-          :title="'Editar usuario'"
-        >
-          <template v-slot:body>
-            <UserForm :showIsActive="true" :action="'editar'" ref="userformEdit"></UserForm>
-          </template>
-        </popup>
-        <!-- <popup
+    <v-container>
+      <v-card
+        color="transparent"
+        offset-md="2"
+        md="2"
+        class="text-md-center elecation-3"
+      >
+        <btn-crud
+          @clickdelete="eliminarUsuario(selected[0])"
+          @clickedit="showEdit({ show: true, usuario: selected[0] })"
+          @clicknew="showNew(true)"
+          :disabledEdit="DisabledButtonEditDelete.edit"
+          :disabledDelete="DisabledButtonEditDelete.delete"
+          @search="searchEvent"
+        ></btn-crud>
+        <v-card-text>
+          <v-data-table
+            v-model="selected"
+            dark
+            show-select
+            item-key="idUsuario"
+            :headers="headers"
+            :items="userList"
+            :search="_Search"
+            :loading="_cargando"
+            class="elevation-1"
+            loading-text="Cargando... por favor espere"
+            :footer-props="{
+              'items-per-page': 5,
+              'items-per-page-text': 'Registros por pagina',
+              'items-per-page-all-text': 'Todos',
+              'show-current-page': true,
+            }"
+          >
+            <template v-slot:[`item.isActive`]="{ item }">
+              <tr>
+                <td>
+                  <v-icon v-if="item.isActive" color="success">done</v-icon>
+                  <v-icon v-else color="error">close</v-icon>
+                </td>
+              </tr>
+            </template>
+            <template v-slot:[`item.nombre`]="{ item }">
+              <tr>
+                <td>
+                  {{ item.nombre }} {{ item.apellidoPaterno }}
+                  {{ item.apellidoMaterno }}
+                  <br />
+                  <div class="text-md-caption blue-grey--text">
+                    {{ item.userName }}
+                  </div>
+                </td>
+              </tr>
+            </template>
+            <template v-slot:[`item.fechaCreacion`]="{ item }">
+              <tr>
+                <td>
+                  {{ item.fechaCreacion | formatDate }}
+                </td>
+              </tr>
+            </template>
+          </v-data-table>
+        </v-card-text>
+      </v-card>
+      <popup
+        v-on:success="guardar('editar')"
+        v-on:cancel="showEdit({ show: false, usuario: {} })"
+        v-on:close="showEdit({ show: false, usuario: {} })"
+        :show="Edit"
+        :title="'Editar usuario'"
+      >
+        <template v-slot:body>
+          <UserForm
+            :showIsActive="true"
+            :action="'editar'"
+            ref="userformEdit"
+          ></UserForm>
+        </template>
+      </popup>
+      <!-- <popup
           v-on:close="showDelete(false)"
           :show="Delete"
           :title="'Projects'"
@@ -111,13 +88,22 @@
             <UserForm ref="userform"></UserForm>
           </template>
         </popup> -->
-        <popup v-on:close="showNew(false)" v-on:success="guardar('nuevo')" v-on:cancel="showNew(false)"  :show="New" :title="'Nuevo usuario'">
-          <template v-slot:body>
-            <UserForm :showIsActive="true" :action="'nuevo'" ref="userformNew"></UserForm>
-          </template>
-        </popup>
-      </v-container>
-    </v-col>
+      <popup
+        v-on:close="showNew(false)"
+        v-on:success="guardar('nuevo')"
+        v-on:cancel="showNew(false)"
+        :show="New"
+        :title="'Nuevo usuario'"
+      >
+        <template v-slot:body>
+          <UserForm
+            :showIsActive="true"
+            :action="'nuevo'"
+            ref="userformNew"
+          ></UserForm>
+        </template>
+      </popup>
+    </v-container>
   </div>
 </template>
 
@@ -125,8 +111,9 @@
 import { mapActions, mapState } from "vuex";
 import popup from "../../components/popup/popup.vue";
 import UserForm from "../../components/Usuario-Form/Usuario-Form.vue";
+import btnCrud from "../../components/btnCrud/btnCrud.vue";
 export default {
-  components: { popup, UserForm },
+  components: { popup, UserForm, btnCrud },
 
   data() {
     return {
@@ -150,15 +137,17 @@ export default {
       "guardarUser",
       "eliminarUsuario",
     ]),
-    ...mapState("UsuarioFormStore",["SetUsuario"]),
+    ...mapState("UsuarioFormStore", ["SetUsuario"]),
     guardar(action) {
       if (action == "nuevo") {
-        this.guardarUser({form: this.$refs.userformNew, action:action})
+        this.guardarUser({ form: this.$refs.userformNew, action: action });
+      } else if (action == "editar") {
+        this.guardarUser({ form: this.$refs.userformEdit, action: action });
       }
-      else if (action == "editar") {
-        this.guardarUser({form: this.$refs.userformEdit, action:action})
-      }
-      this.selected=[]
+      this.selected = [];
+    },
+    searchEvent(s) {
+      this.SetSearch(s);
     },
   },
   computed: {
