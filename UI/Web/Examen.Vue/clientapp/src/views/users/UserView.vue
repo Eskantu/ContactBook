@@ -14,7 +14,6 @@
           :disabledEdit="DisabledButtonEditDelete.edit"
           :disabledDelete="DisabledButtonEditDelete.delete"
           @search="searchEvent"
-          :consola="h"
         ></btn-crud>
         <v-card-text>
           <data-table
@@ -113,9 +112,6 @@ export default {
     this.ObtenerUsuarios();
   },
   methods: {
-    h() {
-      console.log("hola");
-    },
     selectedItem(item) {
       console.log(this.selected.includes(item));
       if (this.selected.includes(item)) {
