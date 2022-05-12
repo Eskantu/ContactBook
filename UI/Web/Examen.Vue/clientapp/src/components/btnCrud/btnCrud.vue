@@ -1,5 +1,6 @@
 <template>
   <v-card-title>
+    <v-btn @click="consola" color="success">function prop</v-btn>
     <v-btn
       :disabled="disabledNew"
       @click="clickNew"
@@ -63,9 +64,9 @@ export default {
         type: Boolean,
         default: true,
     },
-    columTemplates: {
-      type: Array,
-      default: () => [],
+    consola: {
+      type: Function,
+      default: () => {},
   },
   },
   methods: {

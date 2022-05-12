@@ -14,54 +14,40 @@
           :disabledEdit="DisabledButtonEditDelete.edit"
           :disabledDelete="DisabledButtonEditDelete.delete"
           @search="searchEvent"
+          :consola="h"
         ></btn-crud>
         <v-card-text>
-          <v-data-table
-            v-model="selected"
-            dark
-            show-select
-            item-key="idUsuario"
+          <data-table
+            :keyItem="'idUsuario'"
             :headers="headers"
             :items="userList"
+            :customColumns="customColumns"
+            :showSelect="true"
+            :emitItemSelect="selectedItem"
             :search="_Search"
-            :loading="_cargando"
-            class="elevation-1"
-            loading-text="Cargando... por favor espere"
-            :footer-props="{
-              'items-per-page': 5,
-              'items-per-page-text': 'Registros por pagina',
-              'items-per-page-all-text': 'Todos',
-              'show-current-page': true,
-            }"
+
           >
-            <template v-slot:[`item.isActive`]="{ item }">
-              <tr>
-                <td>
-                  <v-icon v-if="item.isActive" color="success">done</v-icon>
-                  <v-icon v-else color="error">close</v-icon>
-                </td>
-              </tr>
+            <template v-slot:isActive="item">
+              <v-icon v-if="item.isActive" color="success">done</v-icon>
+              <v-icon v-else color="error">close</v-icon>
             </template>
-            <template v-slot:[`item.nombre`]="{ item }">
-              <tr>
-                <td>
-                  {{ item.nombre }} {{ item.apellidoPaterno }}
-                  {{ item.apellidoMaterno }}
-                  <br />
-                  <div class="text-md-caption blue-grey--text">
-                    {{ item.userName }}
-                  </div>
-                </td>
-              </tr>
+            <template v-slot:fechaCreacion="item">
+              {{ item.fechaCreacion | formatDate }}
             </template>
-            <template v-slot:[`item.fechaCreacion`]="{ item }">
-              <tr>
-                <td>
-                  {{ item.fechaCreacion | formatDate }}
-                </td>
-              </tr>
+            <template v-slot:detalles>
+              <v-btn color="withe" icon>
+                <v-icon>visibility</v-icon>
+              </v-btn>
             </template>
-          </v-data-table>
+            <template v-slot:nombre="item">
+              {{ item.nombre }} {{ item.apellidoPaterno }}
+              {{ item.apellidoMaterno }}
+              <br />
+              <div class="text-md-caption blue-grey--text">
+                {{ item.userName }}
+              </div>
+            </template>
+          </data-table>
         </v-card-text>
       </v-card>
       <popup
@@ -112,12 +98,14 @@ import { mapActions, mapState } from "vuex";
 import popup from "../../components/popup/popup.vue";
 import UserForm from "../../components/Usuario-Form/Usuario-Form.vue";
 import btnCrud from "../../components/btnCrud/btnCrud.vue";
+import dataTable from "../../components/dataTable/dataTable.vue";
 export default {
-  components: { popup, UserForm, btnCrud },
+  components: { popup, UserForm, btnCrud, dataTable },
 
   data() {
     return {
       selected: [],
+      customColumns: ["fechaCreacion", "isActive", "detalles", "nombre"],
     };
   },
   created() {
@@ -125,6 +113,17 @@ export default {
     this.ObtenerUsuarios();
   },
   methods: {
+    h() {
+      console.log("hola");
+    },
+    selectedItem(item) {
+      console.log(this.selected.includes(item));
+      if (this.selected.includes(item)) {
+        this.selected = this.selected.filter((i) => i !== item);
+      } else {
+        this.selected.push(item);
+      }
+    },
     ...mapActions("UserStore", [
       "ObtenerUsuarios",
       "SetSearch",

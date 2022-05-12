@@ -8,12 +8,13 @@ const store = {
         Delete: false,
         New: false,
         userList: [], userSelect: {}, search: '', headers: [
-            { text: 'Nombre', value: 'nombre' },
-            { text: 'Email', value: 'email' },
-            { text: 'Activo', value: 'isActive', sortable: false },
-            { text: 'Creado por', value: 'creadoPor' },
-            { text: 'Modulos', value: 'modulos' },
-            { text: 'Fecha Creacion', value: 'fechaCreacion' },
+            { text: 'Nombre', value: 'nombre',align: 'start', },
+            { text: 'Detalles', value: 'detalles',align: 'start', },
+            { text: 'Email', value: 'email',align: 'start' },
+            { text: 'Activo', value: 'isActive',align: 'start', sortable: false },
+            { text: 'Creado por', value: 'creadoPor',align: 'start' },
+            { text: 'Modulos', value: 'modulos',align: 'start' },
+            { text: 'Fecha Creacion', value: 'fechaCreacion',align: 'start' },
         ]
     },
     mutations: {
@@ -67,10 +68,10 @@ const store = {
             dispatch('ObtenerUsuarios')
         },
         eliminarUsuario({ commit, dispatch, state }, usuario) {
-            Usuario.Eliminar(usuario.idUsuario).then(res => {
-                state.userSelect = []
-                dispatch('ObtenerUsuarios')
-            }).catch(e => console.log(e.response))
+            // Usuario.Eliminar(usuario.idUsuario).then(res => {
+            //     state.userSelect = []
+            //     dispatch('ObtenerUsuarios')
+            // }).catch(e => console.log(e.response))
         }
     }
 
