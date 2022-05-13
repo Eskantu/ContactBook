@@ -7,18 +7,23 @@
         md="2"
         class="text-md-center elecation-3"
       >
-      <btn-crud></btn-crud>
+        <btn-crud></btn-crud>
+        <v-card-text>
+          <data-table></data-table>
+        </v-card-text>
       </v-card>
     </v-container>
   </div>
 </template>
 
 <script>
-import btnCrud from '../../components/btnCrud/btnCrud.vue'
+import btnCrud from "../../components/btnCrud/btnCrud.vue";
+import dataTable from "../../components/dataTable/dataTable.vue";
 export default {
   name: "TipoContacto",
   components: {
-    btnCrud
+    btnCrud,
+    dataTable,
   },
 };
 </script>
