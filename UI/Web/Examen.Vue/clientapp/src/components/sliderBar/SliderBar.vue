@@ -7,7 +7,6 @@
     :mini-variant-width="80"
     :width="300"
     :dark="true"
-    class="drawer-sidebar"
     :style="'overflow-y:auto'"
     app
   >
@@ -42,7 +41,12 @@
               </v-list-item-content>
             </v-list-item>
           </template>
-          <v-list-item link v-for="sub in item.items" :key="sub.title" :to="sub.to">
+          <v-list-item
+            link
+            v-for="sub in item.items"
+            :key="sub.title"
+            :to="sub.to"
+          >
             <v-list-item-icon>
               <v-icon v-text="sub.icon"></v-icon>
             </v-list-item-icon>
@@ -163,30 +167,4 @@ export default {
 //     transform: rotate(90deg);
 //   }
 // }
-
-.drawer-sidebar {
-  ::-webkit-scrollbar {
-    width: 8px;
-    color: transparent;
-  }
-
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f100;
-  }
-
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #999;
-    border-radius: 10px;
-  }
-
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #888;
-  }
-  overflow-y: scroll;
-  mask-position: left bottom;
-  transition: mask-position 0.3s, -webkit-mask-position 0.3s;
-}
 </style>
