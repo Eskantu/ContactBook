@@ -113,7 +113,6 @@ export default {
   },
   methods: {
     selectedItem(item) {
-      console.log(this.selected.includes(item));
       if (this.selected.includes(item)) {
         this.selected = this.selected.filter((i) => i !== item);
       } else {
