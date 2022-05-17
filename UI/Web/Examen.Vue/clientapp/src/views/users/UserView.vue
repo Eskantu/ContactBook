@@ -24,7 +24,6 @@
             :showSelect="true"
             :emitItemSelect="selectedItem"
             :search="_Search"
-
           >
             <template v-slot:isActive="item">
               <v-icon v-if="item.isActive" color="success">done</v-icon>
@@ -33,8 +32,8 @@
             <template v-slot:fechaCreacion="item">
               {{ item.fechaCreacion | formatDate }}
             </template>
-            <template v-slot:detalles>
-              <v-btn color="withe" icon>
+            <template v-slot:detalles="item">
+              <v-btn @click='showDetails({ show: true, usuario: item })' color="withe" icon>
                 <v-icon>visibility</v-icon>
               </v-btn>
             </template>
@@ -61,6 +60,21 @@
             :showIsActive="true"
             :action="'editar'"
             ref="userformEdit"
+          ></UserForm>
+        </template>
+      </popup>
+      <popup
+        v-on:success="showDetails({ show: false, usuario: {} })"
+        v-on:cancel="showDetails({ show: false, usuario: {} })"
+        v-on:close="showDetails({ show: false, usuario: {} })"
+        :show="Details"
+        :title="'Detalles usuario'"
+      >
+        <template v-slot:body>
+          <UserForm
+          :action="'edit'"
+            :readOnly="true"
+            :showIsActive="true"
           ></UserForm>
         </template>
       </popup>
@@ -125,6 +139,7 @@ export default {
       "SetLoading",
       "showNew",
       "showEdit",
+      "showDetails",
       "showDelete",
       "success",
       "cancel",
@@ -145,7 +160,7 @@ export default {
     },
   },
   computed: {
-    ...mapState("UserStore", ["headers", "userList", "search", "cargando"]),
+    ...mapState("UserStore", ["headers", "userList", "search", "cargando", "Details"]),
     ...mapState("UserStore", {
       Edit: (state) => state.Edit,
       Delete: (state) => state.Delete,

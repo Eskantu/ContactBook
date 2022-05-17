@@ -3,6 +3,7 @@
     <v-row no-gutters>
       <v-col>
         <v-text-field
+        :readonly='readOnly'
           :rules="rules.required"
           v-model="usuario.nombre"
           label="nombre"
@@ -13,6 +14,7 @@
     <v-row no-gutters>
       <v-col cols="5">
         <v-text-field
+        :readonly='readOnly'
           :rules="rules.required"
           v-model="usuario.apellidoPaterno"
           label="apellido paterno"
@@ -22,6 +24,7 @@
       <v-col cols="2"></v-col>
       <v-col cols="5">
         <v-text-field
+        :readonly='readOnly'
           :rules="rules.required"
           v-model="usuario.apellidoMaterno"
           label="apellido materno"
@@ -30,30 +33,34 @@
       </v-col>
     </v-row>
     <v-text-field
+    :readonly='readOnly'
       :rules="rules.required"
       v-model="usuario.userName"
       label="username"
       type="text"
     ></v-text-field>
     <v-text-field
+    :readonly='readOnly'
       :rules="[...rules.required, ...rules.email]"
       v-model="usuario.email"
       label="email"
       type="text"
     ></v-text-field>
     <v-text-field
+    v-if="!readOnly"
       :rules="[...rules.required, ...rules.min, ...rules.isSecuriryPassword]"
       v-model="usuario.contrasenia"
       label="password"
       type="password"
     ></v-text-field>
     <v-text-field
-      v-if="action == 'nuevo'"
-      :rules="action == 'nuevo' ? [...rules.required, ...rules.same] : []"
+      v-if="action == 'nuevo' || action == 'details'"
+      :rules="action == 'nuevo' || action == 'details' ? [...rules.required, ...rules.same] : []"
       label="repeat password"
       type="password"
     ></v-text-field>
     <v-switch
+    :readonly='readOnly'
       v-if="showIsActive"
       :color="`${usuario.isActive ? 'success' : 'red'}`"
       v-model="usuario.isActive"
@@ -73,6 +80,7 @@ export default {
       default: "nuevo",
     },
     showIsActive: { type: Boolean, default: false },
+    readOnly:{ type: Boolean, default: false },
   },
   data() {
     return {

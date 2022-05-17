@@ -7,17 +7,21 @@ const store = {
         Edit: false,
         Delete: false,
         New: false,
+        Details: false,
         userList: [], userSelect: {}, search: '', headers: [
-            { text: 'Nombre', value: 'nombre',align: 'start', },
-            { text: 'Detalles', value: 'detalles',align: 'start', },
-            { text: 'Email', value: 'email',align: 'start' },
-            { text: 'Activo', value: 'isActive',align: 'start', sortable: false },
-            { text: 'Creado por', value: 'creadoPor',align: 'start' },
-            { text: 'Modulos', value: 'modulos',align: 'start' },
-            { text: 'Fecha Creacion', value: 'fechaCreacion',align: 'start' },
+            { text: 'Nombre', value: 'nombre', align: 'start', },
+            { text: 'Detalles', value: 'detalles', align: 'start', },
+            { text: 'Email', value: 'email', align: 'start' },
+            { text: 'Activo', value: 'isActive', align: 'start', sortable: false },
+            { text: 'Creado por', value: 'creadoPor', align: 'start' },
+            { text: 'Modulos', value: 'modulos', align: 'start' },
+            { text: 'Fecha Creacion', value: 'fechaCreacion', align: 'start' },
         ]
     },
     mutations: {
+        setShowDetails(state, value) {
+            state.Details = value
+        },
         setUserList(state, items) {
             state.cargando = false
             state.userList = items
@@ -36,7 +40,7 @@ const store = {
         ObtenerUsuarios({ commit }) {
             Usuario.Obtener().then(res => commit("setUserList", res.data)).catch(e => {
                 console.log(e.response)
-                 Mainstore.commit("SnackStore/SetSnack", e.status)
+                Mainstore.commit("SnackStore/SetSnack", e.status)
             })
         },
         SetSearch({ state }, search) {
@@ -51,6 +55,11 @@ const store = {
         showEdit({ commit }, value) {
             Mainstore.commit('UsuarioFormStore/SetUsuario', value.usuario)
             commit('setShowEdit', value.show)
+        },
+        showDetails({ commit }, value) {
+            console.log(value)
+            Mainstore.commit('UsuarioFormStore/SetUsuario', value.usuario)
+            commit('setShowDetails', value.show)
         },
         showNew({ commit }, value) {
             commit('setShowNew', value)
