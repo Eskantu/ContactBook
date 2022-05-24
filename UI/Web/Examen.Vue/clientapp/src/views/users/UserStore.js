@@ -9,13 +9,13 @@ const store = {
         New: false,
         Details: false,
         userList: [], userSelect: {}, search: '', headers: [
-            { text: 'Nombre', value: 'nombre', align: 'start', },
-            { text: 'Detalles', value: 'detalles', align: 'start', },
+            { isCustom: true, text: 'Nombre', value: 'nombre', align: 'start', },
+            { isCustom: true, text: 'Detalles', value: 'detalles', align: 'start', },
             { text: 'Email', value: 'email', align: 'start' },
-            { text: 'Activo', value: 'isActive', align: 'start', sortable: false },
+            { isCustom: true, text: 'Activo', value: 'isActive', align: 'start', sortable: false },
             { text: 'Creado por', value: 'creadoPor', align: 'start' },
             { text: 'Modulos', value: 'modulos', align: 'start' },
-            { text: 'Fecha Creacion', value: 'fechaCreacion', align: 'start' },
+            { isCustom: true, text: 'Fecha Creacion', value: 'fechaCreacion', align: 'start' },
         ]
     },
     mutations: {
