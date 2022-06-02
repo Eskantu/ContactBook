@@ -28,8 +28,8 @@
             >
             </v-checkbox>
           </td>
-          <td v-for="header in headers" :key="header.value" class="text-left">
-            <span v-if="item[header.value] && !isCustomColumn(header)">{{
+          <td v-for="header in headers" :key="header.value" :class="headers.length>2?'text-left':'text-center'">
+            <span v-if="item[header.value] && header.isCustom==false">{{
               item[header.value]
             }}</span>
             <slot v-else v-bind="item" :name="header.value"></slot>
@@ -72,17 +72,6 @@ export default {
     emitItemSelect: {
       type: Function,
       default: () => {},
-    },
-    customColumns: {
-      type: Array,
-      default() {
-        return [];
-      },
-    },
-  },
-  methods: {
-    isCustomColumn(header) {
-      return this.customColumns.includes(header.value);
     },
   },
 };
