@@ -20,20 +20,20 @@ namespace Examen.Vue
     [Obsolete]
     public static void Main(string[] args)
     {
-      IConfigurationRoot configuration = new ConfigurationBuilder()
-      .AddJsonFile("appsettings.json", false, true)
-      .Build();
-#if DEBUG
-      string connectionString = configuration.GetConnectionString("DevlopConnection");
-#else
-      string connectionString = configuration.GetConnectionString("ProductionConnection");
-#endif
+//       IConfigurationRoot configuration = new ConfigurationBuilder()
+//       .AddJsonFile("appsettings.json", false, true)
+//       .Build();
+// #if DEBUG
+//       string connectionString = configuration.GetConnectionString("DevlopConnection");
+// #else
+//       string connectionString = configuration.GetConnectionString("ProductionConnection");
+// #endif
 
-      Log.Logger = new LoggerConfiguration()
-      .WriteTo.
-      MSSqlServer(connectionString, "Logs", autoCreateSqlTable: true, 
-      restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Information)
-      .CreateLogger();
+//       Log.Logger = new LoggerConfiguration()
+//       .WriteTo.
+//       MSSqlServer(connectionString, "Logs", autoCreateSqlTable: true, 
+//       restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Information)
+//       .CreateLogger();
 
 
 
@@ -44,8 +44,7 @@ namespace Examen.Vue
         Host.CreateDefaultBuilder(args)
             .ConfigureWebHostDefaults(webBuilder =>
             {
-              webBuilder.UseStartup<Startup>()
-              .UseSerilog();
+              webBuilder.UseStartup<Startup>();
 
             });
   }
