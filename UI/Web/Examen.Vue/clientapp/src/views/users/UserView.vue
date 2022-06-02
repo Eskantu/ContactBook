@@ -20,7 +20,6 @@
             :keyItem="'idUsuario'"
             :headers="headers"
             :items="userList"
-            :customColumns="customColumns"
             :showSelect="true"
             :emitItemSelect="selectedItem"
             :search="_Search"
@@ -118,7 +117,6 @@ export default {
   data() {
     return {
       selected: [],
-      customColumns: ["fechaCreacion", "isActive", "detalles", "nombre"],
     };
   },
   created() {
