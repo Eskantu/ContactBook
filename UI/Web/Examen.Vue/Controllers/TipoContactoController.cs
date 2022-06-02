@@ -39,21 +39,21 @@ namespace Examen.Vue.Controllers
         [HttpPost]
         public IActionResult Post(TipoContacto value)
         {
-            return Ok(_tipoContactoManager.Crear(new SpParametros($"insert into TipoContacto(Nombre) values({value.Nombre})")));
+            return Ok(_tipoContactoManager.Crear(new SpParametros($"insert into TipoContacto(Nombre) values('{value.Nombre}')")));
         }
 
-        // PUT: api/TipoContacto/5
-        [HttpPut("{id}")]
-        public IActionResult Put([FromBody] TipoContacto value)
+        // PUT: api/TipoContacto
+        [HttpPut]
+        public IActionResult Put(TipoContacto value)
         {
-            return Ok(_tipoContactoManager.Actualizar(new SpParametros($"UPDATE TipoContacto SET Nombre={value.Nombre} WHERE IdTipoContacto={value.IdTipoContacto}")));
+            return Ok(_tipoContactoManager.Actualizar(new SpParametros($"UPDATE TipoContacto SET Nombre='{value.Nombre}' WHERE IdTipoContacto={value.IdTipoContacto}")));
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            return Ok(_tipoContactoManager.Eliminar(new SpParametros($"DELETE TipoContacto FROM WHERE IdTipoContacto={id}")));
+            return Ok(_tipoContactoManager.Eliminar(new SpParametros($"DELETE FROM TipoContacto WHERE IdTipoContacto={id}")));
         }
     }
 }
