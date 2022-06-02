@@ -22,7 +22,7 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn @click="cancel" color="error">{{ cancelText }}</v-btn>
-        <v-btn @click="success" color="success">{{ successText }}</v-btn>
+        <v-btn :disabled="disableSuccess" @click="success" color="success">{{ successText }}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -36,6 +36,7 @@ export default {
     successText: { type: String, default: "Guardar" },
     cancelText: { type: String, default: "Cancelar" },
     show: { type: Boolean, default: false },
+    disableSuccess: { type: Boolean, default: false },
   },
   data() {
     return {};
