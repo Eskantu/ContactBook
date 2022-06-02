@@ -77,10 +77,10 @@ const store = {
             dispatch('ObtenerUsuarios')
         },
         eliminarUsuario({ commit, dispatch, state }, usuario) {
-            // Usuario.Eliminar(usuario.idUsuario).then(res => {
-            //     state.userSelect = []
-            //     dispatch('ObtenerUsuarios')
-            // }).catch(e => console.log(e.response))
+            Usuario.Eliminar(usuario.idUsuario).then(res => {
+                state.userSelect = []
+                dispatch('ObtenerUsuarios')
+            }).catch(e => console.log(e.response))
         }
     }
 
