@@ -1,6 +1,6 @@
-﻿using Examen.Core.BIZ.Factory;
-using Examen.Core.COMMON.Interfaces;
-using Examen.Vue;
+﻿using ContactBook.Core.BIZ.Factory;
+using ContactBook.Core.COMMON.Interfaces;
+using ContactBook.Vue;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Examen.Tests.UnitTest
+namespace ContactBook.Tests.UnitTest
 {
     public static class GenerateRepository<T> where T : class
     {

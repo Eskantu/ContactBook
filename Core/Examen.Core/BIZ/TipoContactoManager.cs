@@ -1,12 +1,12 @@
-﻿using Examen.Core.COMMON.Interfaces;
-using Examen.Core.COMMON.Models;
+﻿using ContactBook.Core.COMMON.Interfaces;
+using ContactBook.Core.COMMON.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Examen.Core.BIZ
+namespace ContactBook.Core.BIZ
 {
     public class TipoContactoManager : GenericManager<TipoContacto>, ITipoContactoManager
     {

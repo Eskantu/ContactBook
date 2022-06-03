@@ -4,12 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Examen.Core.COMMON.Interfaces;
-using Examen.Core.COMMON.Models;
+using ContactBook.Core.COMMON.Interfaces;
+using ContactBook.Core.COMMON.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
-namespace Examen.Vue.Controllers
+namespace ContactBook.Vue.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

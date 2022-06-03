@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Examen.Core.COMMON.Models
+namespace ContactBook.Core.COMMON.Models
 {
    public class Usuario
     {

@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Examen.Core.BIZ;
-using Examen.Core.COMMON.Interfaces;
-using Examen.Core.COMMON.Models;
+using ContactBook.Core.BIZ;
+using ContactBook.Core.COMMON.Interfaces;
+using ContactBook.Core.COMMON.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,7 +13,7 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 using Serilog.Sinks.MSSqlServer;
 
-namespace Examen.Vue
+namespace ContactBook.Vue
 {
   public class Program
   {

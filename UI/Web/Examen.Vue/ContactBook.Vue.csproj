@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -67,8 +67,9 @@
     <PackageReference Include="VueCliMiddleware" Version="3.0.0" />
   </ItemGroup>
 
+
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\Examen.Core\Examen.Core.csproj" />
+    <ProjectReference Include="..\..\..\Core\Examen.Core\ContactBook.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

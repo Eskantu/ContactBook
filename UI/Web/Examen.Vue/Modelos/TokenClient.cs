@@ -1,4 +1,4 @@
-namespace Examen.Vue.Modelos
+namespace ContactBook.Vue.Modelos
 {
  public class TokenClient
   {

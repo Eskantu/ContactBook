@@ -1,6 +1,6 @@
-﻿using Examen.Core.BIZ;
-using Examen.Core.BIZ.Factory;
-using Examen.Core.COMMON.Interfaces;
+﻿using ContactBook.Core.BIZ;
+using ContactBook.Core.BIZ.Factory;
+using ContactBook.Core.COMMON.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Examen.Vue
+namespace ContactBook.Vue
 {
   public static class ServicesCollectionExtensions
   {

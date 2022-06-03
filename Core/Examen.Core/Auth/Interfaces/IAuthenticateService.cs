@@ -1,9 +1,9 @@
 
 
 
-using Examen.Core.Auth.Modelos;
+using ContactBook.Core.Auth.Modelos;
 
-namespace Examen.Core.Auth.Interfaces
+namespace ContactBook.Core.Auth.Interfaces
 {
 
   public interface IAuthenticateService

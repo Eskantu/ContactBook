@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Examen.Core.DAL
+namespace ContactBook.Core.DAL
 {
     public static class IDataReaderExtensions
     {

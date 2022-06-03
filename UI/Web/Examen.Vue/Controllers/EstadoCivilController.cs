@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Examen.Core.COMMON.Interfaces;
-using Examen.Core.COMMON.Models;
+using ContactBook.Core.COMMON.Interfaces;
+using ContactBook.Core.COMMON.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Examen.Vue.Controllers
+namespace ContactBook.Vue.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -56,7 +56,7 @@ namespace Examen.Vue.Controllers
         {
             try
             {
-                return Ok(_estadoCivilManager.Crear(new SpParametros($"insert into EstadoCivil(Nombre) values({value.Nombre})")));
+                return Ok(_estadoCivilManager.Crear(new SpParametros($"insert into EstadoCivil(Nombre) values('{value.Nombre}')")));
             }
             catch (Exception ex)
             {
@@ -71,7 +71,7 @@ namespace Examen.Vue.Controllers
         {
             try
             {
-                return Ok(_estadoCivilManager.Actualizar(new SpParametros($"update EstadoCivil set Nombre = {value.Nombre} where IdEstadoCivil = {value.IdEstadoCivil}")));
+                return Ok(_estadoCivilManager.Actualizar(new SpParametros($"update EstadoCivil set Nombre = '{value.Nombre}' where IdEstadoCivil = {value.IdEstadoCivil}")));
             }
             catch (Exception ex)
             {

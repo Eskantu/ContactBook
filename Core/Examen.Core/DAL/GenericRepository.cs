@@ -1,5 +1,5 @@
-﻿using Examen.Core.COMMON.Interfaces;
-using Examen.Core.COMMON.Models;
+﻿using ContactBook.Core.COMMON.Interfaces;
+using ContactBook.Core.COMMON.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,7 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Examen.Core.DAL
+namespace ContactBook.Core.DAL
 {
   public class GenericRepository<T> : IGenericRepository<T> where T : class
   {

@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\UI\Web\Examen.Vue\Examen.Vue.csproj" />
+    <ProjectReference Include="..\..\UI\Web\Examen.Vue\ContactBook.Vue.csproj" />
   </ItemGroup>
 
   <ItemGroup>

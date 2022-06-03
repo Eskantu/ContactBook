@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Examen.Core.COMMON.Models
+namespace ContactBook.Core.COMMON.Models
 {
    public class TipoContacto
     {

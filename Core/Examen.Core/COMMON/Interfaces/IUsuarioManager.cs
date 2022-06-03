@@ -1,10 +1,10 @@
-﻿using Examen.Core.Auth.Modelos;
-using Examen.Core.COMMON.Models;
+﻿using ContactBook.Core.Auth.Modelos;
+using ContactBook.Core.COMMON.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Examen.Core.COMMON.Interfaces
+namespace ContactBook.Core.COMMON.Interfaces
 {
     public interface IUsuarioManager:IGenericManager<Usuario>
     {

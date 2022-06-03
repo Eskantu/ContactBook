@@ -1,7 +1,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace Examen.Core.Auth.Modelos
+namespace ContactBook.Core.Auth.Modelos
 {
  public class LoginRequest
   {

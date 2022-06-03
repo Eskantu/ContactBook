@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Examen.Tests
+namespace ContactBook.Tests
 {
     [AttributeUsage(AttributeTargets.Method,AllowMultiple =false)]
    public class TestPriorityAttribute:Attribute

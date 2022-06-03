@@ -1,12 +1,12 @@
-﻿using Examen.Core.Auth.Modelos;
-using Examen.Core.COMMON.Interfaces;
-using Examen.Core.COMMON.Models;
+﻿using ContactBook.Core.Auth.Modelos;
+using ContactBook.Core.COMMON.Interfaces;
+using ContactBook.Core.COMMON.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Examen.Core.BIZ
+namespace ContactBook.Core.BIZ
 {
   public class UsuarioManager : GenericManager<Usuario>, IUsuarioManager
   {

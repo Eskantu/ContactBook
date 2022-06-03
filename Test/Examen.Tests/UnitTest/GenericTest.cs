@@ -1,11 +1,11 @@
-﻿using Examen.Core.COMMON.Interfaces;
-using Examen.Core.COMMON.Models;
+﻿using ContactBook.Core.COMMON.Interfaces;
+using ContactBook.Core.COMMON.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
-namespace Examen.Tests.UnitTest
+namespace ContactBook.Tests.UnitTest
 {
     public class GenericTest<T> where T : class
     {

@@ -76,6 +76,13 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/TipoContacto/TipoContacto.vue"),
     meta: { requiresAuth: true }
   },
+  {
+    path: "/ContactBook/EstadoCivil",
+    name: "EstadoCivil",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/EstadoCivil/EstadoCivil.vue"),
+    meta: { requiresAuth: true }
+  },
 ];
 
 const router = new VueRouter({

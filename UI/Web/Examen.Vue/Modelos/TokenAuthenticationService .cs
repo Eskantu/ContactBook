@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using Examen.Core.Auth.Interfaces;
-using Examen.Core.Auth.Modelos;
-using Examen.Core.COMMON.Interfaces;
-using Examen.Core.COMMON.Models;
+using ContactBook.Core.Auth.Interfaces;
+using ContactBook.Core.Auth.Modelos;
+using ContactBook.Core.COMMON.Interfaces;
+using ContactBook.Core.COMMON.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Examen.Vue.Modelos
+namespace ContactBook.Vue.Modelos
 {
   public class TokenAuthenticationService : IAuthenticateService
   {

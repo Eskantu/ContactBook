@@ -1,6 +1,6 @@
 using System;
 
-namespace Examen.Vue
+namespace ContactBook.Vue
 {
     public class WeatherForecast
     {

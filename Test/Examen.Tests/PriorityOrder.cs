@@ -5,7 +5,7 @@ using System.Text;
 using Xunit.Abstractions;
 using Xunit.Sdk;
 
-namespace Examen.Tests
+namespace ContactBook.Tests
 {
     public class PriorityOrder : ITestCaseOrderer
     {

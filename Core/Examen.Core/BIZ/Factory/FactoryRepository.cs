@@ -1,12 +1,12 @@
-﻿using Examen.Core.COMMON.Interfaces;
-using Examen.Core.DAL;
+﻿using ContactBook.Core.COMMON.Interfaces;
+using ContactBook.Core.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Examen.Core.BIZ.Factory
+namespace ContactBook.Core.BIZ.Factory
 {
     public static class FactoryRepository<T> where T:class
     {

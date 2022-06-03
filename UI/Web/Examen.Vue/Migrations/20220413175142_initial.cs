@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Examen.Vue.Migrations
+namespace ContactBook.Vue.Migrations
 {
     public partial class initial : Migration
     {

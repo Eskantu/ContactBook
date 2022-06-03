@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Examen.Core.COMMON.Interfaces;
-using Examen.Core.COMMON.Models;
+using ContactBook.Core.COMMON.Interfaces;
+using ContactBook.Core.COMMON.Models;
 using Xunit;
 
-namespace Examen.Tests.UnitTest
+namespace ContactBook.Tests.UnitTest
 {
   [TestCaseOrderer("Examen.Tests.PriorityOrder", "Examen.Tests")]
   public class TipoContactoDALTest : GenericTest<TipoContacto>

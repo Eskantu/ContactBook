@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Examen.Core.Auth.Modelos
+namespace ContactBook.Core.Auth.Modelos
 {
     public class TokenManagement
     {

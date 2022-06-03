@@ -1,6 +1,6 @@
-﻿using Examen.Core.COMMON.Models;
-using Examen.Vue;
-using Examen.Vue.Controllers;
+﻿using ContactBook.Core.COMMON.Models;
+using ContactBook.Vue;
+using ContactBook.Vue.Controllers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Examen.Tests
+namespace ContactBook.Tests
 {
     [TestCaseOrderer("Examen.Tests.PriorityOrder", "Examen.Tests")]
     public class IntegrationControllerTest

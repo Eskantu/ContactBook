@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Examen.Core.BIZ;
+using ContactBook.Core.BIZ;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -14,13 +14,13 @@ using VueCliMiddleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.EntityFrameworkCore;
-using Examen.Core.COMMON.Interfaces;
-using Examen.Core.COMMON.Models;
-using Examen.Core.Auth.Modelos;
-using Examen.Core.Auth.Interfaces;
+using ContactBook.Core.COMMON.Interfaces;
+using ContactBook.Core.COMMON.Models;
+using ContactBook.Core.Auth.Modelos;
+using ContactBook.Core.Auth.Interfaces;
 using Microsoft.OpenApi.Models;
 
-namespace Examen.Vue
+namespace ContactBook.Vue
 {
   public class Startup
   {

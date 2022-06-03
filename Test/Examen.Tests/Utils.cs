@@ -1,4 +1,4 @@
-﻿using Examen.Vue;
+﻿using ContactBook.Vue;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Examen.Tests
+namespace ContactBook.Tests
 {
     public static class Utils
     {

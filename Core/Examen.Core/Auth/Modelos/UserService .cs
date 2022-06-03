@@ -1,8 +1,8 @@
 
 
-using Examen.Core.Auth.Interfaces;
+using ContactBook.Core.Auth.Interfaces;
 
-namespace Examen.Core.Auth.Modelos
+namespace ContactBook.Core.Auth.Modelos
 {
   public class UserService : IUserService
   {

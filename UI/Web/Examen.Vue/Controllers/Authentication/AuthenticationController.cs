@@ -4,18 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Examen.Core.COMMON.Interfaces;
-using Examen.Core.COMMON.Models;
+using ContactBook.Core.COMMON.Interfaces;
+using ContactBook.Core.COMMON.Models;
 using Microsoft.AspNetCore.Authorization;
-using Examen.Core.Auth.Interfaces;
-using Examen.Core.Auth.Modelos;
+using ContactBook.Core.Auth.Interfaces;
+using ContactBook.Core.Auth.Modelos;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
-using Examen.Vue.Modelos;
+using ContactBook.Vue.Modelos;
 
-namespace Examen.Vue.Controllers
+namespace ContactBook.Vue.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
