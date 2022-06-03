@@ -45,7 +45,7 @@
             link
             v-for="sub in item.items"
             :key="sub.title"
-            :to="sub.to"
+            :to="{path: sub.to}"
           >
             <v-list-item-icon>
               <v-icon v-text="sub.icon"></v-icon>

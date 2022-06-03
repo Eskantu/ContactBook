@@ -70,7 +70,7 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
-    path: "/TipoContacto",
+    path: "/ContactBook/TipoContacto",
     name: "TipoContacto",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/TipoContacto/TipoContacto.vue"),
