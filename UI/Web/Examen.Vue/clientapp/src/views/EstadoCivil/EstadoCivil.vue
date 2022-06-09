@@ -27,7 +27,7 @@
 import btnCrud from "../../components/btnCrud/btnCrud.vue";
 import { mapActions, mapState, mapMutations, mapGetters } from "vuex";
 import popup from "../../components/popup/popup.vue";
-import EstadoCivilForm from '../../components/EstadoCivil-Form/EstadoCovil-Form.vue';
+import EstadoCivilForm from '../../components/EstadoCivil-Form/EstadoCivil-Form.vue';
 export default {
   components: {
     btnCrud,
