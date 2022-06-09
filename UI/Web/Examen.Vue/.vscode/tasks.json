@@ -7,7 +7,7 @@
       "type": "process",
       "args": [
         "build",
-        "${workspaceFolder}/Examen.Vue.csproj",
+        "${workspaceFolder}/ContactBook.Vue.csproj",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary"
       ],
@@ -19,7 +19,7 @@
       "type": "process",
       "args": [
         "publish",
-        "${workspaceFolder}/Examen.Vue.csproj",
+        "${workspaceFolder}/ContactBook.Vue.csproj",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary"
       ],
@@ -33,7 +33,7 @@
         "watch",
         "run",
         "--project",
-        "${workspaceFolder}/Examen.Vue.csproj"
+        "${workspaceFolder}/ContactBook.Vue.csproj"
       ],
       "problemMatcher": "$msCompile"
     }
