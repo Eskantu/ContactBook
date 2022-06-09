@@ -7,17 +7,48 @@
         md="2"
         class="text-md-center elecation-3"
       >
-        <btn-crud></btn-crud>
+        <btn-crud @clicknew="() => setShowModal(true)"></btn-crud>
       </v-card>
+      <popup
+        @cancel="() => setShowModal(false)"
+        @close="() => setShowModal(false)"
+        :show="showModal"
+      >
+        <template v-slot:body>
+        <estado-civil-form></estado-civil-form>
+      </template>
+      </popup>
+    
     </v-container>
   </div>
 </template>
 
 <script>
 import btnCrud from "../../components/btnCrud/btnCrud.vue";
+import { mapActions, mapState, mapMutations, mapGetters } from "vuex";
+import popup from "../../components/popup/popup.vue";
+import EstadoCivilForm from '../../components/EstadoCivil-Form/EstadoCovil-Form.vue';
 export default {
   components: {
     btnCrud,
+    popup,
+    EstadoCivilForm,
+  },
+  computed: {
+    ...mapState("EstadoCivilStore", [
+      "items",
+      "selectedItems",
+      "search",
+      "accion",
+      "showModal",
+    ]),
+  },
+  methods: {
+    ...mapMutations("EstadoCivilStore", [
+      "setSelectedItems",
+      "setSearch",
+      "setShowModal",
+    ]),
   },
 };
 </script>

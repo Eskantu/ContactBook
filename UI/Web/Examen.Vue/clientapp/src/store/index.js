@@ -10,6 +10,7 @@ import SlideBarStore from '../components/sliderBar/slidebarStore'
 import TipoContactoFormStore from '../components/tipoContacto-Form/tipoContacto-FormStore'
 import TipoContactoStore from '../views/TipoContacto/TipoContactoStore'
 import AppBarStore from '../components/AppBar/AppBarStore'
+import EstadoCivilStore from '../views/EstadoCivil/EstadoCivilStore'
 import auth from "../auth/auth";
 // import auth from '../auth/auth'
 import axios from 'axios'
@@ -37,5 +38,5 @@ export default new Vuex.Store({
       return state.user !== null
     },
   },
-  modules: { AppBarStore, UsuarioFormStore, SnackStore, LoginStore, NewStore, UserStore, UploadStore, SlideBarStore, TipoContactoFormStore, TipoContactoStore }
+  modules: { AppBarStore, UsuarioFormStore, SnackStore, LoginStore, NewStore, UserStore, UploadStore, SlideBarStore, TipoContactoFormStore, TipoContactoStore, EstadoCivilStore }
 });
