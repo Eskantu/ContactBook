@@ -25,35 +25,35 @@ namespace ContactBook.Vue.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_tipoContactoManager.ObtenerTodos(new SpParametros("select * from TipoContacto")));
+            return Ok(_tipoContactoManager.ObtenerTodos());
         }
 
         // GET: api/TipoContacto/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            return Ok(_tipoContactoManager.ObtenerTodos(new SpParametros($"select * from TipoContacto where IdTipoContacto = {id}")));
+            return Ok(_tipoContactoManager.ObtenerPorId(id));
         }
 
         // POST: api/TipoContacto
         [HttpPost]
         public IActionResult Post(TipoContacto value)
         {
-            return Ok(_tipoContactoManager.Crear(new SpParametros($"insert into TipoContacto(Nombre) values('{value.Nombre}')")));
+            return Ok(_tipoContactoManager.Crear(value));
         }
 
         // PUT: api/TipoContacto
         [HttpPut]
         public IActionResult Put(TipoContacto value)
         {
-            return Ok(_tipoContactoManager.Actualizar(new SpParametros($"UPDATE TipoContacto SET Nombre='{value.Nombre}' WHERE IdTipoContacto={value.IdTipoContacto}")));
+            return Ok(_tipoContactoManager.Actualizar(value));
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            return Ok(_tipoContactoManager.Eliminar(new SpParametros($"DELETE FROM TipoContacto WHERE IdTipoContacto={id}")));
+            return Ok(_tipoContactoManager.Eliminar(id));
         }
     }
 }

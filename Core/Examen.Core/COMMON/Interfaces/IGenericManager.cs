@@ -9,11 +9,12 @@ namespace ContactBook.Core.COMMON.Interfaces
 {
    public interface IGenericManager<T> where T:class
     {
-        bool Crear(SpParametros parametros);
-        List<T> ObtenerTodos(SpParametros parametros);
+        bool Crear(T entidad);
+        List<T> ObtenerTodos();
+        T ObtenerPorId(int id);
         string Errror { get;  }
-        bool Actualizar(SpParametros parametros);
-        bool Eliminar(SpParametros parametros);
+        bool Actualizar(T entidad);
+        bool Eliminar(int id);
         List<Y> Query<Y>(SpParametros parametros);
     }
 }

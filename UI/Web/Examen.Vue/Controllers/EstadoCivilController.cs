@@ -27,7 +27,7 @@ namespace ContactBook.Vue.Controllers
         {
             try
             {
-                return Ok(_estadoCivilManager.ObtenerTodos(new SpParametros("select * from EstadoCivil")));
+                return Ok(_estadoCivilManager.ObtenerTodos());
             }
             catch (Exception ex)
             {
@@ -41,7 +41,7 @@ namespace ContactBook.Vue.Controllers
         {
             try
             {
-                return Ok(_estadoCivilManager.ObtenerTodos(new SpParametros($"select * from EstadoCivil where IdEstadoCivil = {id}")));
+                return Ok(_estadoCivilManager.ObtenerPorId(id));
             }
             catch (Exception ex)
             {
@@ -56,7 +56,7 @@ namespace ContactBook.Vue.Controllers
         {
             try
             {
-                return Ok(_estadoCivilManager.Crear(new SpParametros($"insert into EstadoCivil(Nombre) values('{value.Nombre}')")));
+                return Ok(_estadoCivilManager.Crear(value));
             }
             catch (Exception ex)
             {
@@ -71,7 +71,7 @@ namespace ContactBook.Vue.Controllers
         {
             try
             {
-                return Ok(_estadoCivilManager.Actualizar(new SpParametros($"update EstadoCivil set Nombre = '{value.Nombre}' where IdEstadoCivil = {value.IdEstadoCivil}")));
+                return Ok(_estadoCivilManager.Actualizar(value));
             }
             catch (Exception ex)
             {
@@ -91,7 +91,7 @@ namespace ContactBook.Vue.Controllers
                 {
                     idsToDelete += $"{item},";
                 });
-                return Ok(_estadoCivilManager.Actualizar(new SpParametros($"delete from EstadoCivil where IdEstadoCivil IN ({idsToDelete[0..^1]})")));
+                return Ok(_estadoCivilManager.Eliminar(ids[0]));
             }
             catch (Exception ex)
             {

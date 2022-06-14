@@ -27,10 +27,7 @@ namespace ContactBook.Vue.Controllers
         {
             try
             {
-                return Ok(_contactoManager.ObtenerTodos(new SpParametros("SpAgendaWinForm", new List<KeyValuePair<string, object>>
-                {
-                    new KeyValuePair<string, object>("@Opcion",1)
-                })));
+                return Ok(_contactoManager.ObtenerTodos());
             }
             catch (Exception ex)
             {
@@ -44,19 +41,7 @@ namespace ContactBook.Vue.Controllers
         {
             try
             {
-                return Ok(_contactoManager.ObtenerTodos(new SpParametros(@$" 
-                SELECT C.IdContacto, 
-                    C.Nombre, 
-                    C.ApellidoPaterno, 
-                    C.ApellidoMaterno, 
-                    C.Telefono, EC.Nombre AS EstadoCivil, 
-                    TC.Nombre AS TipoContacto, 
-                    C.Genero AS Genero,
-                    DATEDIFF(YEAR,C.FechaNacimiento,GETDATE()) AS Edad,
-                    C.FechaNacimiento
-                FROM Contacto C WITH (NOLOCK) 
-                   INNER JOIN EstadoCivil EC ON EC.IdEstadoCivil=C.IdEstadoCivil
-                   INNER JOIN TipoContacto TC ON TC.IdTipoContacto=C.IdTipoContacto WHERE C.IdContacto = {id}")));
+                return Ok(_contactoManager.ObtenerPorId(id));
             }
             catch (Exception ex)
             {
@@ -70,19 +55,7 @@ namespace ContactBook.Vue.Controllers
         {
             try
             {
-                return Ok(_contactoManager.Crear(new SpParametros("SpAgendaWinForm", new List<KeyValuePair<string, object>>
-                {
-                    new KeyValuePair<string, object>("@Opcion",4),
-                    new KeyValuePair<string, object>("@Id",0),
-                    new KeyValuePair<string, object>("@Nombre",value.Nombre),
-                    new KeyValuePair<string, object>("@ApellidoMaterno",value.ApellidoMaterno),
-                    new KeyValuePair<string, object>("@ApellidoPaterno",value.ApellidoPaterno),
-                    new KeyValuePair<string, object>("@Telefono",value.Telefono),
-                    new KeyValuePair<string, object>("@EstadoCivil",value.EstadoCivil),
-                    new KeyValuePair<string, object>("@TipoContacto",value.TipoContacto),
-                    new KeyValuePair<string, object>("@Genero",value.Genero),
-                    new KeyValuePair<string, object>("@FechaNacimiento",value.FechaNacimiento)
-                })));
+                return Ok(_contactoManager.Crear(value));
             }
             catch (Exception ex)
             {
@@ -96,19 +69,7 @@ namespace ContactBook.Vue.Controllers
         {
             try
             {
-                return Ok(_contactoManager.Actualizar(new SpParametros("SpAgendaWinForm", new List<KeyValuePair<string, object>>
-                {
-                    new KeyValuePair<string, object>("@Opcion",4),
-                    new KeyValuePair<string, object>("@Id",value.IdContacto),
-                    new KeyValuePair<string, object>("@Nombre",value.Nombre),
-                    new KeyValuePair<string, object>("@ApellidoMaterno",value.ApellidoMaterno),
-                    new KeyValuePair<string, object>("@ApellidoPaterno",value.ApellidoPaterno),
-                    new KeyValuePair<string, object>("@Telefono",value.Telefono),
-                    new KeyValuePair<string, object>("@EstadoCivil",value.EstadoCivil),
-                    new KeyValuePair<string, object>("@TipoContacto",value.TipoContacto),
-                    new KeyValuePair<string, object>("@Genero",value.Genero),
-                    new KeyValuePair<string, object>("@FechaNacimiento",value.FechaNacimiento)
-                })));
+                return Ok(_contactoManager.Actualizar(value));
             }
             catch (Exception ex)
             {
@@ -122,11 +83,7 @@ namespace ContactBook.Vue.Controllers
         {
             try
             {
-                return Ok(_contactoManager.Eliminar(new SpParametros("SpAgendaWinForm", new List<KeyValuePair<string, object>>
-                {
-                    new KeyValuePair<string, object>("@Opcion",3),
-                    new KeyValuePair<string, object>("@Id",id),
-                })));
+                return Ok(_contactoManager.Eliminar(id));
             }
             catch (Exception ex)
             {

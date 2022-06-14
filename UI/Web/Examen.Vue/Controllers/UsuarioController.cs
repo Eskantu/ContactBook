@@ -21,37 +21,43 @@ namespace ContactBook.Vue.Controllers
 
         // GET: api/Usuario
         [HttpGet]
-        public IActionResult Get() => Ok(_usuarioManager.ObtenerTodos(new SpParametros("SpUsuario", new List<KeyValuePair<string, object>>
+        public IActionResult Get()
         {
-            new KeyValuePair<string, object>("@Opcion",4)
-        })));
+            if (_usuarioManager.ObtenerTodos() is List<Usuario> usuarios)
+            {
+                return Ok(usuarios);
+            }
+            else
+            {
+
+                return BadRequest(_usuarioManager.Errror);
+            }
+        }
 
         // GET: api/Usuario/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id) => Ok(_usuarioManager.ObtenerTodos(new SpParametros("SpUsuario", new List<KeyValuePair<string, object>>
+        public IActionResult Get(int id)
         {
-            new KeyValuePair<string, object>("@Opcion",4)
-        })).Where(usuario => usuario.IdUsuario == id).FirstOrDefault(x => x != null));
+            if (_usuarioManager.ObtenerPorId(id) is Usuario usuarioFound)
+            {
+                return Ok(usuarioFound);
+            }
+            else
+            {
+
+                return BadRequest(_usuarioManager.Errror);
+            }
+        }
 
         // POST: api/Usuario
         [HttpPost]
         [AllowAnonymous]
         public IActionResult Post([FromBody] Usuario value)
         {
-            var r = _usuarioManager.Crear(new SpParametros("SpUsuario", new List<KeyValuePair<string, object>>
-      {
-            new KeyValuePair<string, object>("@Opcion",1),
-            new KeyValuePair<string, object>("@Nombre",value.Nombre),
-            new KeyValuePair<string, object>("@UserName",value.UserName),
-            new KeyValuePair<string, object>("@ApellidoMaterno",value.ApellidoMaterno),
-            new KeyValuePair<string, object>("@ApellidoPaterno",value.ApellidoPaterno),
-            new KeyValuePair<string, object>("@Contrasenia",value.Contrasenia),
-            new KeyValuePair<string, object>("@Email",value.Email),
-            new KeyValuePair<string, object>("@CreadoPor",value.CreadoPor),
-            new KeyValuePair<string, object>("@IsActive",value.IsActive),
-            new KeyValuePair<string, object>("@Modulos",string.IsNullOrEmpty( value.Modulos)?"":value.Modulos),
-      }));
-            if (r) { return Ok(); }
+            if (_usuarioManager.Crear(value))
+            {
+                return Ok();
+            }
             else
             {
                 return BadRequest(_usuarioManager.Errror);
@@ -60,27 +66,23 @@ namespace ContactBook.Vue.Controllers
 
         // PUT: api/Usuario/5
         [HttpPut]
-        public IActionResult Put([FromBody] Usuario value) => Ok(_usuarioManager.Actualizar(new SpParametros("SpUsuario", new List<KeyValuePair<string, object>>
+        public IActionResult Put([FromBody] Usuario value)
         {
-            new KeyValuePair<string, object>("@Opcion",2),
-            new KeyValuePair<string, object>("@Nombre",value.Nombre),
-            new KeyValuePair<string, object>("@UserName",value.UserName),
-            new KeyValuePair<string, object>("@ApellidoMaterno",value.ApellidoMaterno),
-            new KeyValuePair<string, object>("@ApellidoPaterno",value.ApellidoPaterno),
-            new KeyValuePair<string, object>("@Contrasenia",value.Contrasenia),
-            new KeyValuePair<string, object>("@Email",value.Email),
-            new KeyValuePair<string, object>("@CreadoPor",value.CreadoPor),
-            new KeyValuePair<string, object>("@IsActive",value.IsActive),
-            new KeyValuePair<string, object>("@Modulos",string.IsNullOrEmpty( value.Modulos)?"":value.Modulos),
-            new KeyValuePair<string, object>("@IdUsuario",value.IdUsuario),
-        })));
+            if (_usuarioManager.Actualizar(value))
+                return Ok();
+            else
+                return BadRequest(_usuarioManager.Errror);
+
+        }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id) => Ok(_usuarioManager.Eliminar(new SpParametros("SpUsuario", new List<KeyValuePair<string, object>>
+        public IActionResult Delete(int id)
         {
-            new KeyValuePair<string, object>("@Opcion",3),
-            new KeyValuePair<string, object>("@IdUsuario",id),
-        })));
+            if (_usuarioManager.Eliminar(id))
+                return Ok();
+            else
+               return BadRequest(_usuarioManager.Errror);
+        }
     }
 }
