@@ -33,7 +33,7 @@ namespace ContactBook.Vue.Controllers
     {
       if (!ModelState.IsValid)
       {
-        return BadRequest("Invalid Model");
+        return Unauthorized("Invalid Model");
       }
       if (_authService.IsAuthenticated(request, out AuthenticationModel user))
       {
@@ -43,7 +43,7 @@ namespace ContactBook.Vue.Controllers
       }
       else
       {
-        return BadRequest("Invalid credentials");
+        return Unauthorized("Invalid credentials");
       }
     }
 
